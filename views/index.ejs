@@ -1,0 +1,135 @@
+<div class="landing">
+    <div class="landing-content">
+        <h1 class="headline">Robotronics '23</h1>
+        <p class="byline">Registration platform for Robotronics '23.</p>
+        <div class="buttons-div">
+            <button onclick="invite()">Request Invite</button>
+            <button onclick="register()">Register</button>
+            <button onclick="team()">Edit Team</button>
+        </div>
+        <div class="exception-div buttons-div">
+            <button class="exception" onclick="regIndi()">Register independently</button>
+        </div>
+        <br><br>
+    </div>
+    <img class="illus">
+</div>
+
+<script>
+    const invite = () => {
+        window.location.href = '/invite'
+    }
+    const register = () => {
+        window.location.href = '/register'
+    }
+    const team = () => {
+        window.location.href = '/register/team'
+    }
+    const regIndi = () => {
+        window.location.href = '/register/indireg'
+    }
+</script>
+
+<style>
+    .exception-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px !important;
+    }
+
+    .exception {
+        width: 20vw !important;
+    }
+
+    .landing {
+        display: flex;
+        margin-top: 5vw;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .illus {
+        width: 40vw;
+        margin-left: 5vw;
+    }
+
+    .landing-content h1 {
+        font-size: 5vw;
+        letter-spacing: 1px;
+        margin-top: 3.5vw;
+    }
+
+    .landing-content p {
+        font-size: 1.5vw;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 2.5vw;
+    }
+
+    .buttons-div {
+        margin-top: 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .landing button {
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        background: #111;
+        color: #eee;
+        padding: 15px;
+        width: 10vw;
+        margin-right: 2.5vw;
+        font-size: 1.1vw;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .exception {
+            width: 90vw !important;
+        }
+
+        .exception-div {
+            width: 100%;
+            display: grid;
+            justify-self: unset !important;
+            align-items: unset !important;
+            margin-top: 0px !important;
+        }
+
+        .landing {
+            display: block;
+        }
+
+        .headline {
+            font-size: 10vw !important;
+            margin-left: 2.5vw;
+        }
+
+        .byline {
+            margin-left: 2.5vw;
+            font-size: 5vw !important;
+        }
+
+        .buttons-div {
+            display: grid;
+        }
+
+        .exception,
+        .viewteam {
+            width: 90vw !important;
+            margin-top: 5vw;
+            font-size: 4.5vw !important;
+            margin-left: 2.5vw !important;
+        }
+
+        .landing img {
+            transform: scale(7.5);
+            margin: 35vw 40vw;
+        }
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+</style>

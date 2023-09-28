@@ -1,0 +1,38 @@
+{
+  "name": "robotronics-registeration-platform-2023",
+  "version": "0.0.1",
+  "description": "Robotronics Registeration platform for internal use by tech syndicate",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techsyndicate/robo-23-reg-platform.git"
+  },
+  "keywords": [
+    "robotronics"
+  ],
+  "author": "gamer-1478",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/techsyndicate/robo-23-reg-platform/issues"
+  },
+  "homepage": "https://github.com/techsyndicate/robo-23-reg-platform#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cookie-session": "^2.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-flash": "^0.0.2",
+    "mongoose": "^7.5.3",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7"
+  }
+}
