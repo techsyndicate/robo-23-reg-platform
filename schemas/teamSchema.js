@@ -37,6 +37,7 @@ const teamSchema = new Schema(
         gamedevparticipant2: nonReqString,
         minecraftparticipant1: nonReqString,
         minecraftparticipant2: nonReqString,
+        schCode: reqNumber,
     },
     { timestamps: true }
 );

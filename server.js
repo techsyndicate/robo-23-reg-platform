@@ -15,6 +15,7 @@ const express = require('express'),
 
 //routes
 const landing = require('./routers/landingRouter.js');
+const teamReg = require('./routers/teamReg.js');
 
 const app = express(),
     PORT = process.env.PORT || 5000;
@@ -46,6 +47,7 @@ app.use(passport.session())
 
 //main
 app.use('/', landing)
+app.use('/', teamReg)
 
 app.get('/404', (req, res) => {
     res.render('404', { user: req.user })
@@ -54,3 +56,5 @@ app.get('/404', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`)
 })
+
+
