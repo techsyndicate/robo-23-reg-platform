@@ -1,4 +1,4 @@
-This Internal Use License Agreement (the "Agreement") by and between Tech Syndicate (hereinafter referred to as the "Company"), represented by its owner, Aayush Garg (hereinafter referred to as the "Licensor"), and any authorized user (hereinafter referred to as the "Licensee").
+# This Internal Use License Agreement (the "Agreement") by and between Tech Syndicate (hereinafter referred to as the "Company"), represented by its owner, Aayush Garg (hereinafter referred to as the "Licensor"), and any authorized user (hereinafter referred to as the "Licensee").
 
 # 1. License Grant
 ### 1.1. Subject to the terms and conditions of this Agreement, Licensor grants Licensee a non-exclusive, non-transferable, revocable license to use the software application (the "App") internally within the confines of Tech Syndicate for the purpose of steaming registeration of robotronics.

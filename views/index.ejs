@@ -4,44 +4,30 @@
         <p class="byline">Registration platform for Robotronics '23.</p>
         <div class="buttons-div">
             <button onclick="invite()">Request Invite</button>
-            <button onclick="register()">Register</button>
-            <button onclick="team()">Edit Team</button>
+            <button onclick="team()">Login</button>
         </div>
-        <div class="exception-div buttons-div">
-            <button class="exception" onclick="regIndi()">Register independently</button>
+        <div class="register-div">
+            <button onclick="register('school')">Register School</button>
+            <button onclick="register('indi')">Register Independantly</button>
         </div>
         <br><br>
     </div>
-    <img class="illus">
+    <img class="illus" src="/illus.svg">
 </div>
 
 <script>
     const invite = () => {
         window.location.href = '/invite'
     }
-    const register = () => {
-        window.location.href = '/register'
+    const register = (x) => {
+        window.location.href = '/register/'+x+'/'
     }
     const team = () => {
-        window.location.href = '/register/team'
-    }
-    const regIndi = () => {
-        window.location.href = '/register/indireg'
+        window.location.href = '/login'
     }
 </script>
 
 <style>
-    .exception-div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 30px !important;
-    }
-
-    .exception {
-        width: 20vw !important;
-    }
-
     .landing {
         display: flex;
         margin-top: 5vw;
@@ -79,25 +65,25 @@
         border-radius: 10px;
         background: #111;
         color: #eee;
-        padding: 15px;
-        width: 10vw;
+        padding: 20px;
+        width: 15vw;
         margin-right: 2.5vw;
         font-size: 1.1vw;
     }
 
-    @media only screen and (max-width: 768px) {
-        .exception {
-            width: 90vw !important;
-        }
+    .register-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        .exception-div {
-            width: 100%;
-            display: grid;
-            justify-self: unset !important;
-            align-items: unset !important;
-            margin-top: 0px !important;
-        }
+    .register-div button {
+        margin-top: 1vw;
+        width: 33vw;
+    }
 
+    @media screen and (max-width: 768px) {
         .landing {
             display: block;
         }
@@ -116,20 +102,14 @@
             display: grid;
         }
 
-        .exception,
-        .viewteam {
-            width: 90vw !important;
-            margin-top: 5vw;
-            font-size: 4.5vw !important;
-            margin-left: 2.5vw !important;
+        .landing button {
+            width: 80vw;
+            margin: 2.5vw;
+            font-size: 5vw;
         }
 
-        .landing img {
-            transform: scale(7.5);
-            margin: 35vw 40vw;
+        .illus {
+            display: none;
         }
     }
-
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
 </style>
