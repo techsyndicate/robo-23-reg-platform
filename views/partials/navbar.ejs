@@ -3,11 +3,26 @@
     <nav class="navbar">
         <a href="/" class="nav-branding"><img width="50px" src="/logo.png"></a>
 
+        <ul class="nav-menu">         
+                <% if (typeof user != "undefined" && typeof user.admin != "undefined" && !user.admin) { %>
+                    <li class="nav-item">
+                        <a href="/dashboard" class="nav-link">Dashboard</a>
+                    </li>
+                    <% if (user.admin) { %>
+                    <li class="nav-item">
+                        <a href="/admin" class="nav-link">Admin</a>
+                    </li>
+                    <% } %>
+                <% } %>
+        </ul>
+
+        <% if (typeof user !="undefined") { %>
         <div class="hamburger">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
+        <% } %>
     </nav>
 </header>
 
@@ -70,7 +85,7 @@
     }
 
     .nav-menu {
-        /* margin-left: 2.5vw; */
+        margin-right: 5vw;
         display: flex;
         align-items: center;
         gap: 3vw;
@@ -160,7 +175,7 @@
 
         .nav-menu {
             position: fixed;
-            left: -100%;
+            left: -110%;
             top: 90px;
             gap: 0;
             height: 1vh;
