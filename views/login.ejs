@@ -1,6 +1,6 @@
 <div class="team">
     <div class="teamLogin">
-        <form class="schoolLoginForm">
+        <div class="schoolLoginForm">
             <h1 style="color:#16e16e;">Login</h1>
             <h2>
                 Email
@@ -11,10 +11,45 @@
             </h2>
             <input name="password" id="password" type="password" required placeholder="Password">
             <br><br>
-            <button id="schLoginBtn">Login </button>
-        </form>
+            <button id="schLoginBtn" onclick="submitForm()">Login </button>
+        </div>
     </div>
 </div>
+
+<script>
+    var notyf = new Notyf();
+    async function submitForm() {
+        var schoolEmail = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        if (schoolEmail == "" || password == "") {
+            notyf.error("Please fill all the fields");
+            return;
+        }
+        var data = {
+            schoolEmail: schoolEmail,
+            password: password
+        }
+        var response = await fetch("/login/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        var res = await response.json();
+        for (var i = 0; i < res.length; i++) {
+            if (res[i].sucess) {
+                notyf.success(res[i].msg);
+                setTimeout(() => {
+                    window.location.href = "/login";
+                }, 2000);
+            } else {
+                res.error(data[i].msg);
+            }
+        }
+    }
+</script>
+
 <style>
     h2 {
         letter-spacing: 1.45px;

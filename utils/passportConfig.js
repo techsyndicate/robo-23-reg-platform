@@ -5,10 +5,10 @@ const passportLocal = require('passport-local'),
 
 module.exports = function passportInit(passport) {
     passport.use(
-        new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-            User.findOne({
-                school: {schoolEmail: email}
-            }).then(user => {
+        new LocalStrategy({ usernameField: 'schoolEmail', passwordField: 'password' },
+            async (email, password, done) => {
+                const user = await User.findOne({ "school.schoolEmail": email }) || user.findOne({ "indi.indiEmail": email }) || user.findOne({ "school.clubEmail": email });
+                console.log(user)
                 if (!user) {
                     return done(null, false, { message: 'That email is not registered' });
                 }
@@ -21,17 +21,19 @@ module.exports = function passportInit(passport) {
                         return done(null, false, { message: 'Password incorrect' });
                     }
                 });
-            });
-        })
+            })
     );
 
     passport.serializeUser(function (user, done) {
         done(null, user.id);
     });
 
-    passport.deserializeUser(function (id, done) {
-        User.findById(id, function (err, user) {
-            done(err, user);
-        });
+    passport.deserializeUser(async function (id, done) {
+        try {
+            const user = await User.findById(id)
+            done(null, user)
+        } catch (err) {
+            res.send(err)
+        }
     });
 };

@@ -16,6 +16,7 @@ const express = require('express'),
 //routes
 const landingRouter = require('./routers/landingRouter.js'),
     loginRouter = require('./routers/loginRouter.js'),
+    dashboardRouter = require('./routers/dashboardRouter.js'),
     regRouter = require('./routers/regRouter.js');
 
 const app = express(),
@@ -50,6 +51,7 @@ app.use(passport.session())
 app.use('/', landingRouter)
 app.use('/register', regRouter)
 app.use('/login', loginRouter)
+app.use('/dashboard', dashboardRouter)
 
 app.get('/404', (req, res) => {
     res.render('404', { user: req.user })

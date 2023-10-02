@@ -1,6 +1,6 @@
 <div class="reg">
     <h1>School Registration</h1>
-    <form id="regForm" class="regForm" autocomplete="off" action="/register/school" method="post">
+    <div id="regForm" class="regForm">
         <div class="col-1">
             <h3>School Details</h3>
             <input type="text" name="schoolName" placeholder="School Name" required id="schoolName"> <br>
@@ -22,6 +22,7 @@
             <input type="email" name="studentEmail" placeholder="Student Email" id="studentEmail" required><br>
             <input type="text" name="studentPhone" placeholder="Student Phone" id="studentPhone" required><br>
         </div>
+    </div>
     <div class="password-phone-fix">
         <div class="col-1">
             <h3>Password</h3>
@@ -33,11 +34,103 @@
         </div>
     </div>
     <div class="buttons-div">
-        <button type="submit" id="regButton">Register</button>
+        <button type="submit" id="regButton" onclick="submitForm()">Register</button>
     </div>
 </div>
-</form>
 
+<script>
+    var notyf = new Notyf();
+    async function submitForm() {
+        var schoolName = document.getElementById("schoolName").value;
+        var schoolAddress = document.getElementById("schoolAddress").value;
+        var schoolEmail = document.getElementById("schoolEmail").value;
+        var clubName = document.getElementById("clubName").value;
+        var clubEmail = document.getElementById("clubEmail").value;
+        var clubWebsite = document.getElementById("clubWebsite").value;
+        var teacherName = document.getElementById("teacherName").value;
+        var teacherEmail = document.getElementById("teacherEmail").value;
+        var teacherPhone = document.getElementById("teacherPhone").value;
+        var studentName = document.getElementById("studentName").value;
+        var studentEmail = document.getElementById("studentEmail").value;
+        var studentPhone = document.getElementById("studentPhone").value;
+        var password = document.getElementById("password").value;
+        var cpassword = document.getElementById("cpassword").value;
+
+        if (password != cpassword) {
+            notyf.error("Passwords do not match");
+            return;
+        }
+
+        if (schoolName == "" || schoolAddress == "" || schoolEmail == "" || teacherName == "" || teacherEmail == "" || teacherPhone == "" || studentName == "" || studentEmail == "" || studentPhone == "" || password == "" || cpassword == "") {
+            notyf.error("Please fill all the fields");
+            return;
+        }
+
+        if (schoolEmail.indexOf("@") == -1 || schoolEmail.indexOf(".") == -1) {
+            notyf.error("Please enter a valid school email");
+            return;
+        }
+
+        if (teacherEmail.indexOf("@") == -1 || teacherEmail.indexOf(".") == -1) {
+            notyf.error("Please enter a valid teacher email");
+            return;
+        }
+
+        if (studentEmail.indexOf("@") == -1 || studentEmail.indexOf(".") == -1) {
+            notyf.error("Please enter a valid student email");
+            return;
+        }
+
+        if (teacherPhone.length != 10) {
+            notyf.error("Please enter a valid teacher phone number");
+            return;
+        }
+
+        if (studentPhone.length != 10) {
+            notyf.error("Please enter a valid student phone number");
+            return;
+        }
+
+        var data = {
+            schoolName: schoolName,
+            schoolAddress: schoolAddress,
+            schoolEmail: schoolEmail,
+            clubName: clubName,
+            clubEmail: clubEmail,
+            clubWebsite: clubWebsite,
+            teacherName: teacherName,
+            teacherEmail: teacherEmail,
+            teacherPhone: teacherPhone,
+            studentName: studentName,
+            studentEmail: studentEmail,
+            studentPhone: studentPhone,
+            password: password,
+            cpassword: cpassword
+        }
+
+        await fetch('/register/school', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json()).then((data) => {
+            console.log(data)
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].sucess) {
+                    notyf.success(data[i].msg);
+                    setTimeout(() => {
+                        window.location.href = "/login";
+                    }, 2000);
+                } else {
+                    notyf.error(data[i].msg);
+                }
+            }
+        }
+        ).catch((err) => console.log(err));
+
+    }
+</script>
 
 <style>
     .password-phone-fix {
