@@ -1,6 +1,6 @@
 const router = require('express').Router();
-
-router.get('/', (req, res) => {
+const {ensureAuthenticated, forwardAuthenticated} = require('../middleware/authenticate.js')
+router.get('/', forwardAuthenticated, (req, res) => {
     res.render('login', { user: req.user })
 });
 
