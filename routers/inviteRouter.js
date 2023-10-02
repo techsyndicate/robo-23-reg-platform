@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
 //     console.log(req.body.count)
 // })
 
-router.post('/', urlencodedParser, (req,res) => {    
+router.post('/', urlencodedParser, async (req, res) => {
     console.log(req.body.email)
     const emails = req.body.email
     for (var i = 0; i < emails.length; i++) {

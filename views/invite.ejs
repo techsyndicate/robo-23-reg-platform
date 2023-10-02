@@ -5,10 +5,10 @@
             <h2>
                 Email
             </h2>
-            <input name="email" id="email" type="email" required placeholder="School Email"> <br><br>
+            <input name="email" id="email" type="email"> <br><br>
             <span id="fooBar">&nbsp;</span>
-            <div id="add">add more</div>
-            <button type="submit" id="schLoginBtn" onclick="sendLen()">Login </button>
+            <div id="add" class="add">Add More</div>
+            <button type="submit" id="schLoginBtn" onclick="sendLen()">Submit </button>
         </form>
     </div>
 </div>
@@ -21,6 +21,7 @@
         align-items: center;
         margin-bottom: 0;
     }
+
     h2 {
         letter-spacing: 1.45px;
         text-align: left;
@@ -41,7 +42,11 @@
         min-height: 80vh;
     }
 
-    .teamLogin button {
+    .teamLogin button,
+    .add {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background-color: #16e16e;
         color: #111;
         border-radius: 5px;
@@ -79,7 +84,9 @@
     }
 
     @media(max-width:768px) {
-        button {
+
+        button,
+        .add {
             width: 90vw !important;
             margin-top: 5vw !important;
             font-size: 6vw !important;
@@ -102,17 +109,29 @@
             font-size: 10vw !important;
             margin-bottom: 5vw;
         }
+
         #noDisplay {
             display: none !important;
         }
+    }
+
+    .inputs-addtnl {
+        display: flex;
+        width: 42vw;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-bottom: 1vh;
+    }
+
+    #foobar {
+        min-height: 0;
     }
 </style>
 
 
 <script>
     const add = document.getElementById('add')
-    var foo = document.getElementById("fooBar");
-
     add.addEventListener('click', () => {
         addEmailInput()
     })
@@ -121,14 +140,26 @@
     var count2 = "b"
 
     function addEmailInput() {
+        var foo = document.getElementById("fooBar");
+
+        var z = document.createElement("div");
+        z.setAttribute("class", "inputs-addtnl")
+        z.setAttribute("id", count2 + "c")
+        foo.appendChild(z);
+
+        foo = document.getElementById(count2 + "c");
+
         var x = document.createElement("INPUT");
         x.setAttribute("type", "email");
         x.setAttribute("name", "email");
         x.setAttribute("id", count);
+
         var y = document.createElement("DIV");
         y.setAttribute("onclick", `deleteEmailInput("${count}", "${count2}")`)
         y.setAttribute("id", count2)
-        const node = document.createTextNode("delete this ☝️");
+        y.setAttribute("class", "remove-button")
+
+        const node = document.createTextNode("❌");
         y.appendChild(node)
         count = count + "a";
         count2 = count2 + "b";
@@ -141,7 +172,7 @@
         element.remove()
         var element2 = document.getElementById(counter2);
         element2.remove()
-        
+
         // console.log(document.getElementById(counter2))   
         // console.log(counter2, typeof counter2)
     }

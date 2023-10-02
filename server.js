@@ -18,6 +18,7 @@ const express = require('express'),
 //routes
 const landingRouter = require('./routers/landingRouter.js'),
     loginRouter = require('./routers/loginRouter.js'),
+    dashboardRouter = require('./routers/dashboardRouter.js'),
     regRouter = require('./routers/regRouter.js');
     inviteRouter = require('./routers/inviteRouter.js')
 
@@ -54,6 +55,11 @@ app.use('/', landingRouter)
 app.use('/register', regRouter)
 app.use('/login', loginRouter)
 app.use('/invite', inviteRouter)
+app.use('/dashboard', dashboardRouter)
+
+app.get('/404', (req, res) => {
+    res.render('404', { user: req.user })
+});
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`)
