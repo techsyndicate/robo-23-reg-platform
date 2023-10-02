@@ -7,13 +7,13 @@ module.exports = function passportInit(passport) {
     passport.use(
         new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
             User.findOne({
-                email: email
+                school: {schoolEmail: email}
             }).then(user => {
                 if (!user) {
                     return done(null, false, { message: 'That email is not registered' });
                 }
 
-                bcrypt.compare(password, user.password, (err, isMatch) => {
+                bcrypt.compare(password, user.school.pass || user.indi.pass, (err, isMatch) => {
                     if (err) throw err;
                     if (isMatch) {
                         return done(null, user);

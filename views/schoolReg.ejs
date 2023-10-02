@@ -1,6 +1,6 @@
 <div class="reg">
     <h1>School Registration</h1>
-    <form id="regForm" class="regForm" autocomplete="off">
+    <form id="regForm" class="regForm" autocomplete="off" action="/register/school" method="post">
         <div class="col-1">
             <h3>School Details</h3>
             <input type="text" name="schoolName" placeholder="School Name" required id="schoolName"> <br>
@@ -22,7 +22,6 @@
             <input type="email" name="studentEmail" placeholder="Student Email" id="studentEmail" required><br>
             <input type="text" name="studentPhone" placeholder="Student Phone" id="studentPhone" required><br>
         </div>
-    </form>
     <div class="password-phone-fix">
         <div class="col-1">
             <h3>Password</h3>
@@ -34,9 +33,11 @@
         </div>
     </div>
     <div class="buttons-div">
-        <button id="regButton">Register</button>
+        <button type="submit" id="regButton">Register</button>
     </div>
 </div>
+</form>
+
 
 <style>
     .password-phone-fix {
