@@ -1,9 +1,12 @@
 <div class="reg">
     <h1>Individual Registration</h1>
-    <p class="notice">You must designate one member of the team as a leader, who will register on behalf of the team.<br>
- Make sure to login and enter the details of members taking part in each event.along with their email and phone number. <br>
-Team Members may belong to different schools. Team Lead will get the discord verification token along with the login details.</p>
-    <form id="regForm" class="regForm" autocomplete="off">
+    <p class="notice">You must designate one member of the team as a leader, who will register on behalf of the
+        team.<br>
+        Make sure to login and enter the details of members taking part in each event, along with their email and phone
+        number. <br>
+        Team Members may belong to different schools. Team Lead will get the discord verification token along with the
+        login details.</p>
+    <div id="regForm" class="regForm" autocomplete="off">
         <div class="col-1">
             <h3>Team Leader Details</h3>
             <input type="text" name="LeadName" placeholder="Name" required id="name"> <br>
@@ -16,7 +19,7 @@ Team Members may belong to different schools. Team Lead will get the discord ver
             <input type="number" name="LeadPhone" placeholder="9717966964" id="phone" required><br>
             <input type="text" name="LeadSchool" placeholder="School Name" id="school" required><br>
         </div>
-    </form>
+    </div>
     <div class="password-phone-fix">
         <div class="col-1">
             <h3>Password</h3>
@@ -28,17 +31,85 @@ Team Members may belong to different schools. Team Lead will get the discord ver
         </div>
     </div>
     <div class="buttons-div">
-        <button id="regButton">Register</button>
+        <button id="regButton" onclick="submitForm()">Register</button>
     </div>
 </div>
+
+<script>
+    var notyf = new Notyf();
+    async function submitForm() {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("emal").value;
+        var dob = document.getElementById("dob").value;
+        var grade = document.getElementById("grade").value;
+        var phone = document.getElementById("phone").value;
+        var school = document.getElementById("school").value;
+        var password = document.getElementById("password").value;
+        var cpassword = document.getElementById("cpassword").value;
+
+        if (password != cpassword) {
+            notyf.error("Passwords do not match");
+            return;
+        }
+
+        if (name == "" || email == "" || dob == "" || grade == "" || phone == "" || school == "" || password == "" || cpassword == "") {
+            notyf.error("Please fill all the fields");
+            return;
+        }
+
+        if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+            notyf.error("Please enter a valid school email");
+            return;
+        }
+
+        if (phone.length != 10) {
+            notyf.error("Please enter a valid student phone number");
+            return;
+        }
+
+        var data = {
+            name: name,
+            email: email,
+            dob: dob,
+            grade: grade,
+            phone: phone,
+            school: school,
+            password: password,
+            cpassword: cpassword
+        }
+
+        await fetch('/register/indi', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json()).then((data) => {
+            console.log(data)
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].sucess) {
+                    notyf.success(data[i].msg);
+                    setTimeout(() => {
+                        window.location.href = "/login";
+                    }, 2000);
+                } else {
+                    notyf.error(data[i].msg);
+                }
+            }
+        }
+        ).catch((err) => console.log(err));
+
+    }
+</script>
 
 <style>
     .notice {
         width: 80vw;
         text-align: center;
-        color: #16e16e;
-        font-size: 24px;
+        color: #fff;
+        font-size: 16px;
     }
+
     .password-phone-fix {
         display: flex;
         flex-direction: row;
