@@ -7,7 +7,7 @@ module.exports = function passportInit(passport) {
     passport.use(
         new LocalStrategy({ usernameField: 'schoolEmail', passwordField: 'password' },
             async (email, password, done) => {
-                const user = await User.findOne({ "school.schoolEmail": email }) || user.findOne({ "indi.indiEmail": email }) || user.findOne({ "school.clubEmail": email });
+                const user = await User.findOne({ "school.schoolEmail": email }) || await User.findOne({ "indi.email": email }) || await User.findOne({ "school.clubEmail": email });
                 console.log(user)
                 if (!user) {
                     return done(null, false, { message: 'That email is not registered' });

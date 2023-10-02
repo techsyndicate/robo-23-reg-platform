@@ -54,6 +54,54 @@ router.post('/school', async (req, res, next) => {
   );
 })
 
+router.post('/indi', async (req, res, next) => {
+  let errors = []
+  const { name,
+    email,
+    dob,
+    grade,
+    phone,
+    school,
+    password,
+    cpassword
+  } = req.body
+  if (!name || !email || !dob || !grade || !phone || !school || !password || !cpassword) errors.push({ msg: "All fields are required" })
+  if (password != cpassword) errors.push({ msg: "Passwords do not match" })
+  await User.findOne({ "indi.email": email }).then((user) => {
+    if (user) {
+      console.log(user, "already exists")
+      errors.push({ msg: "Account already exists, try logging in" })
+    }
+  })
+
+  if (errors.length > 0) return res.send(errors)
+  const newUser = new User({
+    regType: 'indi',
+    indi: {
+      firstName: name.split(" ")[0],
+      lastName: name.split(" ")[1],
+      email: email,
+      phone: phone,
+      dob: dob,
+      grade: grade,
+      schname: school,
+      pass: password
+    }
+  })
+  bcrypt.genSalt(10, (err, salt) =>
+    bcrypt.hash(newUser.indi.pass, salt, async (err, hash) => {
+      if (err) throw err;
+      newUser.indi.pass = hash;
+      await newUser.save().then((user) => {
+        console.log(user)
+      }).catch(err => console.log(err))
+      req.body.schoolEmail = email
+      await loginUser(req, res, next)
+    })
+  );
+})
+
+
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');
