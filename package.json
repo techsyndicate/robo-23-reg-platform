@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/techsyndicate/robo-23-reg-platform#readme",
   "dependencies": {
+    "@azure/communication-sms": "^1.0.0",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cookie-session": "^2.0.0",
@@ -31,8 +32,10 @@
     "express-ejs-layouts": "^2.5.1",
     "express-flash": "^0.0.2",
     "mongoose": "^7.5.3",
+    "nodemailer": "^6.9.5",
     "passport": "^0.5.3",
     "passport-local": "^1.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "twilio": "^4.18.0"
   }
 }

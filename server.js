@@ -12,12 +12,15 @@ const express = require('express'),
     flash = require('express-flash'),
     expressLayouts = require('express-ejs-layouts'),
     mongoose = require('mongoose');
+    nodemailer = require('nodemailer')
+    twilio = require('twilio')
 
 //routes
 const landingRouter = require('./routers/landingRouter.js'),
     loginRouter = require('./routers/loginRouter.js'),
     dashboardRouter = require('./routers/dashboardRouter.js'),
     regRouter = require('./routers/regRouter.js');
+    inviteRouter = require('./routers/inviteRouter.js')
 
 const app = express(),
     PORT = process.env.PORT || 5000;
@@ -51,6 +54,7 @@ app.use(passport.session())
 app.use('/', landingRouter)
 app.use('/register', regRouter)
 app.use('/login', loginRouter)
+app.use('/invite', inviteRouter)
 app.use('/dashboard', dashboardRouter)
 
 app.get('/404', (req, res) => {
@@ -59,4 +63,4 @@ app.get('/404', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`)
-})
+});

@@ -1,0 +1,161 @@
+<div class="team">
+    <div class="teamLogin">
+        <form class="schoolLoginForm" method="post" action="/invite">
+            <h1 style="color:#16e16e;">School Emails</h1>
+            <h2>
+                Email
+            </h2>
+            <input name="email" id="email" type="email" required placeholder="School Email"> <br><br>
+            <span id="fooBar">&nbsp;</span>
+            <div id="add">add more</div>
+            <button type="submit" id="schLoginBtn" onclick="sendLen()">Login </button>
+        </form>
+    </div>
+</div>
+<style>
+    .inputs {
+        display: flex;
+        width: 40vw;
+        /* height: auto; */
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 0;
+    }
+    h2 {
+        letter-spacing: 1.45px;
+        text-align: left;
+        font-weight: 300;
+    }
+
+    .team {
+        display: flex;
+        flex-direction: column;
+        color: #eee;
+    }
+
+    .teamLogin {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+    }
+
+    .teamLogin button {
+        background-color: #16e16e;
+        color: #111;
+        border-radius: 5px;
+        font-size: 1.35vw;
+        font-weight: 400;
+        min-height: 3.5vw;
+        cursor: pointer;
+        width: 100%;
+        border: none;
+        margin-top: .5vw;
+    }
+
+    input {
+        width: 40vw;
+        height: 3vw;
+        background-color: transparent;
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        font-size: 1.3vw;
+        font-weight: 500;
+        border-radius: 10px;
+        padding: 1.5vw;
+    }
+
+    input:focus {
+        outline: none;
+        border: 2px solid #16e16e;
+    }
+
+    h1 {
+        font-size: 3.5vw;
+        font-weight: 400;
+        text-align: left;
+        letter-spacing: 1.5px;
+    }
+
+    @media(max-width:768px) {
+        button {
+            width: 90vw !important;
+            margin-top: 5vw !important;
+            font-size: 6vw !important;
+            height: 40px !important;
+        }
+
+        .team {
+            margin-left: 2.5vw;
+        }
+
+        input {
+            width: 90vw !important;
+            height: 5vw !important;
+            font-size: 3.5vw !important;
+            padding: 20px !important;
+        }
+
+        h1 {
+            text-align: left !important;
+            font-size: 10vw !important;
+            margin-bottom: 5vw;
+        }
+        #noDisplay {
+            display: none !important;
+        }
+    }
+</style>
+
+
+<script>
+    const add = document.getElementById('add')
+    var foo = document.getElementById("fooBar");
+
+    add.addEventListener('click', () => {
+        addEmailInput()
+    })
+
+    var count = "a"
+    var count2 = "b"
+
+    function addEmailInput() {
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "email");
+        x.setAttribute("name", "email");
+        x.setAttribute("id", count);
+        var y = document.createElement("DIV");
+        y.setAttribute("onclick", `deleteEmailInput("${count}", "${count2}")`)
+        y.setAttribute("id", count2)
+        const node = document.createTextNode("delete this ☝️");
+        y.appendChild(node)
+        count = count + "a";
+        count2 = count2 + "b";
+        foo.appendChild(x);
+        foo.appendChild(y)
+    }
+
+    function deleteEmailInput(counter, counter2) {
+        var element = document.getElementById(counter);
+        element.remove()
+        var element2 = document.getElementById(counter2);
+        element2.remove()
+        
+        // console.log(document.getElementById(counter2))   
+        // console.log(counter2, typeof counter2)
+    }
+
+
+    const sendLenButton = document.getElementById("schLoginBtn")
+    function sendLen() {
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "text");
+        x.setAttribute("value", count);
+        x.setAttribute("id", "noDisplay")
+        x.setAttribute("style", "visibility: hidden")
+        x.setAttribute("name", count)
+        document.body.appendChild(x)
+    }
+
+</script>
