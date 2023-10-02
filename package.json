@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/techsyndicate/robo-23-reg-platform#readme",
   "dependencies": {
+    "@azure/communication-sms": "^1.0.0",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cookie-session": "^2.0.0",
