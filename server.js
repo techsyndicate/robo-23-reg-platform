@@ -46,6 +46,11 @@ passportInit(passport)
 const dbUri = process.env.MONGO_URI
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log("Connected to mongodb"))
 
+//discord 
+const {botInit} = require('./utils/discordBot')
+botInit()
+
+
 //more passport
 app.use(passport.initialize())
 app.use(passport.session())
@@ -64,3 +69,5 @@ app.get('/404', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`)
 });
+
+
