@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const { loginUser, forwardAuthenticated } = require('../utils/authenticate.js')
 const { teamCreateHandle } = require('../utils/discordBot.js')
 const otpGenerator = require('otp-generator')
+const 
 
 router.get('/school', forwardAuthenticated, (req, res) => {
   res.render('schoolReg', { user: req.user })
@@ -111,7 +112,7 @@ router.post('/indi', async (req, res, next) => {
           subject: "Registration for Robotronics 2023",
           html: await renderFile("views/reg-email.ejs", {
             userId,
-            pass: spass,
+            pass: pass,
             token,
           }),
         };
