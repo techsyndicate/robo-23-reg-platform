@@ -20,7 +20,8 @@ const landingRouter = require('./routers/landingRouter.js'),
     loginRouter = require('./routers/loginRouter.js'),
     dashboardRouter = require('./routers/dashboardRouter.js'),
     regRouter = require('./routers/regRouter.js');
-    inviteRouter = require('./routers/inviteRouter.js')
+    inviteRouter = require('./routers/inviteRouter.js');
+    adminRouter = require('./routers/adminRouter.js');
 
 const app = express(),
     PORT = process.env.PORT || 5000;
@@ -47,8 +48,8 @@ const dbUri = process.env.MONGO_URI
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log("Connected to mongodb"))
 
 //discord 
-const {botInit} = require('./utils/discordBot')
-botInit()
+// const {botInit} = require('./utils/discordBot')
+// botInit()
 
 
 //more passport
@@ -60,6 +61,7 @@ app.use('/', landingRouter)
 app.use('/register', regRouter)
 app.use('/login', loginRouter)
 app.use('/invite', inviteRouter)
+app.use('/admin', adminRouter)
 app.use('/dashboard', dashboardRouter)
 
 app.get('/404', (req, res) => {
@@ -70,4 +72,7 @@ app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`)
 });
 
-
+app.get('/logout', (req, res) => {
+    req.logout()
+    res.redirect('/')
+})
