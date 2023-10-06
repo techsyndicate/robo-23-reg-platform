@@ -21,19 +21,28 @@ async function botInit(){
             if(message.content.startsWith("ts verify")){
                let content = message.content.split(" ")[2]
                User.findOne({discordCode: content}).then(async (team)=>{
-                if(team){
+                if(team.school.schoolName){
+                  console.log("In school")
                   let role = guild.roles.cache.find(r => r.name === team.school.schoolName)
                   if(!role){
                     console.log("No role found")
                   }
                   else{ 
-                    member.roles.add(role).then(
+                    member.roles.add([role, process.env.MEMBER_ROLE_ID]).then(
                       async () => await member.setNickname(`${message.author.globalName} | ${team.school.schoolName}`)
                     )
                     message.react('✅')
                     member.send("Verified")                
                   }
-                }else{
+                }
+                else if(team.indi.firstName){
+                  member.roles.add([process.env.INDI_ROLE_ID, process.env.MEMBER_ROLE_ID]).then(
+                    async () => await member.setNickname(`${team.indi.firstName} ${team.indi.lastName}`)
+                  )
+                  message.react('✅')
+                  member.send("Verified")                
+                }
+                else{
                   flag = true
                 }
                 if(flag){
@@ -50,6 +59,8 @@ async function botInit(){
     })
 
 }
+
+
 
 
 const teamCreateHandle = async (name)=>{
