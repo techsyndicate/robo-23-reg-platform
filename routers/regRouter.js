@@ -2,6 +2,8 @@ const router = require('express').Router()
 const User = require('../schemas/userSchema.js')
 const bcrypt = require('bcrypt')
 const { loginUser, forwardAuthenticated } = require('../utils/authenticate.js')
+const { teamCreateHandle } = require('../utils/discordBot.js')
+const otpGenerator = require('otp-generator')
 
 router.get('/school', forwardAuthenticated, (req, res) => {
   res.render('schoolReg', { user: req.user })
@@ -12,6 +14,8 @@ router.get('/indi', forwardAuthenticated, (req, res) => {
 });
 
 router.post('/school', async (req, res, next) => {
+  let discordCode = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false });
+
   let errors = []
   const { schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone, password, cpassword } = req.body
   if (!schoolName || !schoolAddress || !schoolEmail || !teacherName || !teacherEmail || !teacherPhone || !studentName || !studentEmail || !studentPhone || !password || !cpassword) errors.push({ msg: "All fields are required" })
@@ -40,14 +44,16 @@ router.post('/school', async (req, res, next) => {
       studentEmail,
       studentPhone,
       pass: password
-    }
+    },
+    discordCode
+
   })
   bcrypt.genSalt(10, (err, salt) =>
     bcrypt.hash(newUser.school.pass, salt, async (err, hash) => {
       if (err) throw err;
       newUser.school.pass = hash;
       await newUser.save().then((user) => {
-        console.log(user)
+        teamCreateHandle(user.school.schoolName)
       }).catch(err => console.log(err))
       await loginUser(req, res, next)
     })
@@ -55,6 +61,8 @@ router.post('/school', async (req, res, next) => {
 })
 
 router.post('/indi', async (req, res, next) => {
+  let discordCode = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false });
+
   let errors = []
   const { name,
     email,
@@ -86,7 +94,8 @@ router.post('/indi', async (req, res, next) => {
       grade: grade,
       schname: school,
       pass: password
-    }
+    },
+    discordCode
   })
   bcrypt.genSalt(10, (err, salt) =>
     bcrypt.hash(newUser.indi.pass, salt, async (err, hash) => {
