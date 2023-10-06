@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const bodyParser = require('body-parser');
 const sendMail = require('../utils/mailHelper');
+const ejs = require('ejs')
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -14,11 +15,19 @@ router.get('/', (req, res) => {
 
 router.post('/', urlencodedParser, async (req, res) => {
     console.log(req.body.email)
-    const emails = req.body.email
-    for (var i = 0; i < emails.length; i++) {
-        sendMail(emails[i], "hello", "this is the text", "<h1>Hello there</h1>")
+    if (Array.isArray(req.body.email)) {
+        const emails = req.body.email
+        var answers = []
+        for (var i = 0; i < emails.length; i++) {
+            answers.push(await sendMail(emails[i], "hello", "Invite for Robotronics '23", await ejs.renderFile(__dirname + "/../views/inviteMail.ejs")))
+            if (i == emails.length - 1) {
+                res.send("Emails sent successfully")
+            }
+        }
+    } else {
+        const answer = await sendMail(req.body.email, "hello", "Invite for Robotronics '23", await ejs.renderFile(__dirname + "/../views/inviteMail.ejs"))
+        res.send("Email sent successfully") 
     }
-    res.send('EMAILS SENT');
 })
 
 //export router
