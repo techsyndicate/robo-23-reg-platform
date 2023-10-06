@@ -23,7 +23,8 @@ const landingRouter = require('./routers/landingRouter.js'),
     loginRouter = require('./routers/loginRouter.js'),
     dashboardRouter = require('./routers/dashboardRouter.js'),
     regRouter = require('./routers/regRouter.js');
-    inviteRouter = require('./routers/inviteRouter.js')
+    inviteRouter = require('./routers/inviteRouter.js'),
+    schoolData = require('./routers/schoolData.js')
 
 const app = express(),
     PORT = process.env.PORT || 5000;
@@ -50,8 +51,8 @@ const dbUri = process.env.MONGO_URI
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log("Connected to mongodb"))
 
 //discord 
-const {botInit} = require('./utils/discordBot')
-botInit()
+// const {botInit} = require('./utils/discordBot')
+// botInit()
 
 
 //more passport
