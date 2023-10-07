@@ -46,9 +46,9 @@ passportInit(passport)
 const dbUri = process.env.MONGO_URI
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log("Connected to mongodb"))
 
-// //discord 
-const {botInit} = require('./utils/discordBot')
-botInit()
+// // //discord 
+// const {botInit} = require('./utils/discordBot')
+// botInit()
 
 
 //more passport
@@ -59,7 +59,7 @@ app.use(passport.session());
 app.use('/', landingRouter)
 app.use('/register', regRouter)
 app.use('/login', loginRouter)
-app.use('/invite', inviteRouter)
+app.use('/invite', inviteRouter);
 app.use('/dashboard', dashboardRouter)
 
 app.get('/404', (req, res) => {

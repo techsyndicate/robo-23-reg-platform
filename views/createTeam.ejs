@@ -14,37 +14,37 @@
             <button onclick="back">Go Back</button>
         </div>
         <br><br>
-        <form action="/dashboard/teamCreate" method="POST">
-            <input type="text" placeholder="Creative Participant 1" name="creativeparticipant1">
-            <input type="text" placeholder="Creative Participant 2" name="creativeparticipant2">
-            <input type="text" placeholder="Creative Participant 3" name="creativeparticipant3">
-            <input type="text" placeholder="Creative Participant 4" name="creativeparticipant4">
-            <input type="text" placeholder="Creative Participant 5" name="creativeparticipant5">
-            <input type="text" placeholder="Creative Participant 6" name="creativeparticipant6">
-            <input type="text" placeholder="Cross Participant 1" name="crossparticipant1">
-            <input type="text" placeholder="Cross Participant 2" name="crossparticipant2">
-            <input type="text" placeholder="GD Participant 1" name="gdparticipant1">
-            <input type="text" placeholder="Surprise Participant 1" name="surpparticipant1">
-            <input type="text" placeholder="Surprise Participant 2" name="surpparticipant2">
-            <input type="text" placeholder="Programming Participant 1" name="progparticipant1">
-            <input type="text" placeholder="Programming Participant 2" name="progparticipant2">
-            <input type="text" placeholder="Film Making Participant 1" name="filmparticipant1">
-            <input type="text" placeholder="Film Making Participant 2" name="filmparticipant2">
-            <input type="text" placeholder="Film Making Participant 3" name="filmparticipant3">
-            <input type="text" placeholder="Film Making Participant 4" name="filmparticipant4">
-            <input type="text" placeholder="Gaming Participant 1" name="gamingparticipant1">
-            <input type="text" placeholder="Gaming Participant 2" name="gamingparticipant2">
-            <input type="text" placeholder="Quiz Participant 1" name="quizparticipant1">
-            <input type="text" placeholder="Robotics Participant 1" name="roboticsparticipant1">
-            <input type="text" placeholder="Robotics Participant 2" name="roboticsparticipant2">
-            <input type="text" placeholder="Robotics Participant 3" name="roboticsparticipant3">
-            <input type="text" placeholder="Photography Participant 1" name="photoparticipant1">
-            <input type="text" placeholder="Paint Participant 1" name="paintparticipant1">
-            <input type="text" placeholder="Game Development Participant 1" name="gamedevparticipant1">
-            <input type="text" placeholder="Game Development Participant 2" name="gamedevparticipant2">
-            <input type="text" placeholder="Minecraft Participant 1" name="minecraftparticipant1">
-            <input type="text" placeholder="Minecraft Participant 2" name="minecraftparticipant2">
-            <button type="submit">Submit</button>
+        <form action="/dashboard/teamCreate" method="POST" class="form">
+            <div class='inputContainer'><input type="text" placeholder="Creative Participant 1" name="creativeparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Creative Participant 2" name="creativeparticipant2"></div>
+            <div class='inputContainer'><input type="text" placeholder="Creative Participant 3" name="creativeparticipant3"></div>
+            <div class='inputContainer'><input type="text" placeholder="Creative Participant 4" name="creativeparticipant4"></div>
+            <div class='inputContainer'><input type="text" placeholder="Creative Participant 5" name="creativeparticipant5"></div>
+            <div class='inputContainer'><input type="text" placeholder="Creative Participant 6" name="creativeparticipant6"></div>
+            <div class='inputContainer'><input type="text" placeholder="Cross Participant 1" name="crossparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Cross Participant 2" name="crossparticipant2"></div>
+            <div class='inputContainer'><input type="text" placeholder="GD Participant 1" name="gdparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Surprise Participant 1" name="surpparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Surprise Participant 2" name="surpparticipant2"></div>
+            <div class='inputContainer'><input type="text" placeholder="Programming Participant 1" name="progparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Programming Participant 2" name="progparticipant2"></div>
+            <div class='inputContainer'><input type="text" placeholder="Film Making Participant 1" name="filmparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Film Making Participant 2" name="filmparticipant2"></div>
+            <div class='inputContainer'><input type="text" placeholder="Film Making Participant 3" name="filmparticipant3"></div>
+            <div class='inputContainer'><input type="text" placeholder="Film Making Participant 4" name="filmparticipant4"></div>
+            <div class='inputContainer'><input type="text" placeholder="Gaming Participant 1" name="gamingparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Gaming Participant 2" name="gamingparticipant2"></div>
+            <div class='inputContainer'><input type="text" placeholder="Quiz Participant 1" name="quizparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Robotics Participant 1" name="roboticsparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Robotics Participant 2" name="roboticsparticipant2"></div>
+            <div class='inputContainer'><input type="text" placeholder="Robotics Participant 3" name="roboticsparticipant3"></div>
+            <div class='inputContainer'><input type="text" placeholder="Photography Participant 1" name="photoparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Paint Participant 1" name="paintparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Game Development Participant 1" name="gamedevparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Game Development Participant 2" name="gamedevparticipant2"></div>
+            <div class='inputContainer'><input type="text" placeholder="Minecraft Participant 1" name="minecraftparticipant1"></div>
+            <div class='inputContainer'><input type="text" placeholder="Minecraft Participant 2" name="minecraftparticipant2"></div>
+            <div class='inputContainer' style="background: rgba(122, 122, 122)"><button type="submit">Submit</button>
         </form>
         </div>
 
@@ -78,6 +78,25 @@
 </script>
 
 <style>
+    .form {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .inputContainer {
+        background: rgba(44, 44, 44, 0.6);
+        padding: 20px;
+        width: 20vw;
+        margin-right: 1vw;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    input {
+        padding: 10px;
+        width: 75%;
+        font-size: 1.2em;
+    }
     .countdown{
         margin-left: -.5em;
     }
@@ -124,6 +143,9 @@
     .illus {
         width: 40vw;
         margin-left: 5vw;
+        position: absolute;
+        right: 0;
+        z-index: -1;
     }
 
     .landing-content h1 {

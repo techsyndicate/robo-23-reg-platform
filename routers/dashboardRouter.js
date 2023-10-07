@@ -3,15 +3,18 @@ const User = require('../schemas/userSchema');
 const Team = require('../schemas/teamSchema');
 
 router.get('/',async (req, res) => {
+    if (!req.user) return res.redirect('/')
     res.render('dashboard', { user: req.user })
     console.log(req.user)
 });
 
 router.get('/teamCreate', (req,res) =>{
+    if (!req.user) return res.redirect('/')
     res.render('createTeam', {user: req.user})
 })
 
 router.get('/team', async(req, res) => {
+    if (!req.user) return res.redirect('/')
     const teamDetails = await Team.findOne({schName: req.user.school.schoolName});
     var teams = [];
     if(teamDetails === null){
@@ -26,6 +29,7 @@ router.get('/team', async(req, res) => {
 })
 
 router.post('/teamCreate', async(req,res) => {
+    if (!req.user) return res.redirect('/')
     const team = new Team({
         schName: req.user.school.schoolName,
         creativeparticipant1: req.body.creativeparticipant1,
@@ -64,6 +68,7 @@ router.post('/teamCreate', async(req,res) => {
 })
 
 router.post('/teamUpdate', async(req, res) => {
+    if (!req.user) return res.redirect('/')
     await Team.findOneAndUpdate({schName: req.user.school.schoolName}, 
         {$set: {
             creativeparticipant1: req.body.creativeparticipant1,
