@@ -6,6 +6,7 @@ const { teamCreateHandle } = require('../utils/discordBot.js')
 const otpGenerator = require('otp-generator')
 const ejs = require('ejs')
 const { sendMail } = require('../utils/mailHelper.js')
+const teamSchema = require('../schemas/teamSchema.js')
 
 router.get('/school', forwardAuthenticated, (req, res) => {
   res.render('schoolReg', { user: req.user })
@@ -50,6 +51,11 @@ router.post('/school', async (req, res, next) => {
     discordCode
 
   })
+  const team = new teamSchema({
+
+  })
+  team.save()
+  newUser.teamSchemaID = team._id
   bcrypt.genSalt(10, async (err, salt) =>
     bcrypt.hash(newUser.school.pass, salt, async (err, hash) => {
       if (err) throw err;
@@ -117,14 +123,10 @@ router.post('/indi', async (req, res, next) => {
   
 })
 
-
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');
 });
-
-
-
 
 //export router
 module.exports = router;

@@ -1,15 +1,14 @@
 const router = require('express').Router();
 const User = require('../schemas/userSchema');
 const Team = require('../schemas/teamSchema');
+const { ensureAuthenticated } = require('../utils/authenticate.js');
 
-router.get('/', async (req, res) => {
+router.get('/', ensureAuthenticated, async (req, res) => {
     res.render('dashboard', { user: req.user })
 });
 
-router.get('/team', async (req, res) => {
-    const teamDetails = await Team.findOne({ schName: req.user.school.schoolName });
-    var teams = [];
-    console.log(teamDetails)
+router.get('/team', ensureAuthenticated, async (req, res) => {
+    const teamDetails = await Team.findOne({ _id: req.user.teamSchemaID })
     res.render('manageTeams', { user: req.user, teams: teamDetails })
 })
 
@@ -51,7 +50,6 @@ router.post('/teamUpdate', async (req, res) => {
 
     res.redirect('/dashboard/team')
 })
-
 
 //export router
 module.exports = router;

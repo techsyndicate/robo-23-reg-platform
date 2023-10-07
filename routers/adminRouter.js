@@ -8,7 +8,6 @@ router.get('/',async (req, res) => {
 
 router.get('/schoolData', async (req, res) => {
     const schoolDetails = await User.find({});
-    // console.log(schoolDetails)
     var schools = [];
     for (let i = 0; i < schoolDetails.length; i++) {
         if (schoolDetails[i].regType === "school") {

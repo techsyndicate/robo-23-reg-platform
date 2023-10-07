@@ -11,7 +11,7 @@
         </ul>
 
         <div class="register-div">
-            <button onclick="register('school')">Check - In</button>
+            <button onclick="checkin('school')">Check - In</button>
         </div>
         <br><br>
     </div>
@@ -19,14 +19,8 @@
 </div>
 
 <script>
-    const invite = () => {
-        window.location.href = '/invite'
-    }
-    const register = (x) => {
-        window.location.href = '/register/'+x+'/'
-    }
-    const team = () => {
-        window.location.href = '/login'
+    const checkin = (x) => {
+        window.location.href = '/admin/schoolData'
     }
 
     var countDownDate = new Date("Nov 3, 2023 09:00:00").getTime();

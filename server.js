@@ -1,6 +1,5 @@
 require('dotenv').config()
 
-// const { Client } = require('whatsapp-web.js');
 //modules
 const express = require('express'),
     bodyParser = require('body-parser'),
@@ -71,24 +70,6 @@ app.use('/dashboard', dashboardRouter)
 app.get('/404', (req, res) => {
     res.render('404', { user: req.user })
 });
-
-// var options = {
-//   method: 'POST',
-//   url: 'https://api.ultramsg.com/instance63795/messages/chat',
-//   headers: {'content-type': ' application/x-www-form-urlencoded'},
-//   form: {
-//     "token": "bzh5zz0goyugyzxa",
-//     "to": "+919873957989",
-//     "body": "WhatsApp API on UltraMsg.com works good"
-// }
-// };
-
-// request(options, function (error, response, body) {
-//   if (error) throw new Error(error);
-
-//   console.log(body);
-// });
-
 
 app.post('/logout', (req, res) => {
     req.logout((err) => {
