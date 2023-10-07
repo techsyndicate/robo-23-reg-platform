@@ -11,7 +11,14 @@ function forwardAuthenticated(req, res, next) {
     if (!req.isAuthenticated()) {
       return next();
     }
-    else res.redirect('/dashboard');
+    else{
+      if(req.user.admin){
+        res.redirect('/admin')
+      }
+      else{
+        res.redirect('/dashboard')
+      }
+    } 
   }
 
 function ensureAdminAuthenticated(req, res, next) {
@@ -34,6 +41,7 @@ async function loginUser(req, res, next) {
     }
   })(req, res, next);
 }
+
 
 
 module.exports = { ensureAuthenticated, forwardAuthenticated, ensureAdminAuthenticated, loginUser };
