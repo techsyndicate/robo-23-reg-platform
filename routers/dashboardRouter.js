@@ -9,11 +9,13 @@ router.get('/', ensureAuthenticated, async (req, res) => {
 
 router.get('/team', ensureAuthenticated, async (req, res) => {
     const teamDetails = await Team.findOne({ _id: req.user.teamSchemaID })
-    res.render('manageTeams', { user: req.user, teams: teamDetails })
+    console.log(teamDetails)
+    res.render('manageTeams', { user: req.user, team: await teamDetails })
 })
 
-router.post('/teamUpdate', async (req, res) => {
-    await Team.updateOne({ schName: req.user.school.schoolName },
+router.post('/team', ensureAuthenticated, async (req, res) => {
+    console.log(req.body)
+    await Team.updateOne({ _id: req.user.teamSchemaID },
         {
             $set: {
                 creativeparticipant1: req.body.creativeparticipant1,
@@ -46,7 +48,7 @@ router.post('/teamUpdate', async (req, res) => {
                 minecraftparticipant1: req.body.minecraftparticipant1,
                 minecraftparticipant2: req.body.minecraftparticipant2,
             }
-        })
+        }).then((doc)=> console.log(doc));
 
     res.redirect('/dashboard/team')
 })

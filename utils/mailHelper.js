@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const ejs = require('ejs')
 
 var transporter = nodemailer.createTransport({
-  service: 'outlook',
+  service: 'gmail',
   auth: {
     user: process.env.FROM_EMAIL,
     pass: process.env.EMAIL_PASS

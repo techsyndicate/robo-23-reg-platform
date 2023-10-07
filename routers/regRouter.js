@@ -107,6 +107,11 @@ router.post('/indi', async (req, res, next) => {
     },
     discordCode
   })
+  const team = new teamSchema({
+
+  })
+  team.save()
+  newUser.teamSchemaID = team._id
   bcrypt.genSalt(10, (err, salt) =>
     bcrypt.hash(newUser.indi.pass, salt, async (err, hash) => {
       if (err) throw err;

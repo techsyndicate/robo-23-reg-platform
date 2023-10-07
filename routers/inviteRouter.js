@@ -9,10 +9,6 @@ router.get('/', (req, res) => {
     res.render('invite', { user: req.user })
 });
 
-// router.post('/len', (req, res) => {
-//     console.log(req.body.count)
-// })
-
 router.post('/', urlencodedParser, async (req, res) => {
     console.log(req.body.email)
     if (Array.isArray(req.body.email)) {
