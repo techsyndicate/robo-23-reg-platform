@@ -1,0 +1,324 @@
+<div class="landing">
+    <div class="landing-content">
+        <h1 class="headline">Robotronics '23</h1>
+        <p class="byline">Registration platform for Robotronics '23</p>
+
+        <ul class="countdown">
+            <li><p>days</p><span id="days"></span></li>
+            <li><p>hrs</p><span id="hrs"></span></li>
+            <li><p>mins</p><span id="mins"></span></li>
+            <li style="color: #16e16e;"><p>sec</p><span id="secs"></span></li>
+        </ul>
+
+        <div class="register-div">
+            <button onclick="back">Go Back</button>
+        </div>
+        <br><br>
+        <!-- <form action="/admin/teamUpdate" method="POST">
+            <input type="text" placeholder="Creative Participant 1" name="creativeparticipant1">
+            <input type="text" placeholder="Creative Participant 2" name="creativeparticipant2">
+            <input type="text" placeholder="Creative Participant 3" name="creativeparticipant3">
+            <input type="text" placeholder="Creative Participant 4" name="creativeparticipant4">
+            <input type="text" placeholder="Creative Participant 5" name="creativeparticipant5">
+            <input type="text" placeholder="Creative Participant 6" name="creativeparticipant6">
+            <input type="text" placeholder="Cross Participant 1" name="crossparticipant1">
+            <input type="text" placeholder="Cross Participant 2" name="crossparticipant2">
+            <input type="text" placeholder="GD Participant 1" name="gdparticipant1">
+            <input type="text" placeholder="Surprise Participant 1" name="surpparticipant1">
+            <input type="text" placeholder="Surprise Participant 2" name="surpparticipant2">
+            <input type="text" placeholder="Programming Participant 1" name="progparticipant1">
+            <input type="text" placeholder="Programming Participant 2" name="progparticipant2">
+            <input type="text" placeholder="Film Making Participant 1" name="filmparticipant1">
+            <input type="text" placeholder="Film Making Participant 2" name="filmparticipant2">
+            <input type="text" placeholder="Film Making Participant 3" name="filmparticipant3">
+            <input type="text" placeholder="Film Making Participant 4" name="filmparticipant4">
+            <input type="text" placeholder="Gaming Participant 1" name="gamingparticipant1">
+            <input type="text" placeholder="Gaming Participant 2" name="gamingparticipant2">
+            <input type="text" placeholder="Quiz Participant 1" name="quizparticipant1">
+            <input type="text" placeholder="Robotics Participant 1" name="roboticsparticipant1">
+            <input type="text" placeholder="Robotics Participant 2" name="roboticsparticipant2">
+            <input type="text" placeholder="Robotics Participant 3" name="roboticsparticipant3">
+            <input type="text" placeholder="Photography Participant 1" name="photoparticipant1">
+            <input type="text" placeholder="Paint Participant 1" name="paintparticipant1">
+            <input type="text" placeholder="Game Development Participant 1" name="gamedevparticipant1">
+            <input type="text" placeholder="Game Development Participant 2" name="gamedevparticipant2">
+            <input type="text" placeholder="Minecraft Participant 1" name="minecraftparticipant1">
+            <input type="text" placeholder="Minecraft Participant 2" name="minecraftparticipant2">
+            <button type="submit">Submit</button>
+        </form> -->
+        <div class="container">
+            
+                <div class="card">
+                    <div class="data" id="1"><span class="sub-heading">School Name:</span> <span class='data-text'><%=teams.schName  %></span><button class='editBtn' onclick="showEditForm('<%=teams.schName  %>', '1', event)">Edit</button></div>
+                    <div class="data" id="2"><span class="sub-heading">Creative Participant 1:</span><span class="data-text"> <%=teams.creativeparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div1', event)">Edit</button><div id='div1'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.creativeparticipant1  %>" id="input1"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input1').value, 'hiddenInput1')">Update</button></div></div>
+                    <div class="data" id="3"><span class="sub-heading">Creative Participant 2:</span><span class="data-text"> <%=teams.creativeparticipant2  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div2', event)">Edit</button><div id='div2'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.creativeparticipant2  %>" id="input2"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input2').value, 'hiddenInput2')">Update</button></div><div id='div1'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.creativeparticipant1  %>" id="input1"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input1').value, 'hiddenInput1')">Update</button></div></div>
+                    <div class="data" id="4"><span class="sub-heading">Creative Participant 3:</span><span class="data-text"> <%=teams.creativeparticipant3  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div3', event)">Edit</button><div id='div3'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.creativeparticipant3  %>" id="input3"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input3').value, 'hiddenInput3')">Update</button></div></div>
+                    <div class="data" id="5"><span class="sub-heading">Creative Participant 4:</span><span class="data-text"> <%=teams.creativeparticipant4  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div4', event)">Edit</button><div id='div4'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.creativeparticipant4  %>" id="input4"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input4').value, 'hiddenInput4')">Update</button></div></div>
+                    <div class="data" id="6"><span class="sub-heading">Creative Participant 5:</span><span class="data-text"> <%=teams.creativeparticipant5  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div5', event)">Edit</button><div id='div5'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.creativeparticipant5  %>" id="input5"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input5').value, 'hiddenInput5')">Update</button></div></div>
+                    <div class="data" id="7"><span class="sub-heading">Creative Participant 6:</span><span class="data-text"> <%=teams.creativeparticipant6  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div6', event)">Edit</button><div id='div6'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.creativeparticipant6  %>" id="input6"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input6').value, 'hiddenInput6')">Update</button></div></div>
+                    <div class="data" id="8"><span class="sub-heading">Cross Participant 1:</span><span class="data-text"> <%=teams.crossparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div7', event)">Edit</button><div id='div7'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.crossparticipant1  %>" id="input7"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input7').value, 'hiddenInput7')">Update</button></div></div>
+                    <div class="data" id="9"><span class="sub-heading">Cross Participant 2:</span><span class="data-text"> <%=teams.crossparticipant2  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div8', event)">Edit</button><div id='div8'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.crossparticipant2  %>" id="input8"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input8').value, 'hiddenInput8')">Update</button></div></div>
+                    <div class="data" id="10"><span class="sub-heading">GD Participant 1:</span><span class="data-text"> <%=teams.gdparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div9', event)">Edit</button><div id='div9'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.gdparticipant1  %>" id="input9"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input9').value, 'hiddenInput9')">Update</button></div></div>
+                    <div class="data" id="11"><span class="sub-heading">Surprise Participant 1:</span><span class="data-text"> <%=teams.surpparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div10', event)">Edit</button><div id='div10'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.surpparticipant1  %>" id="input10"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input10').value, 'hiddenInput10')">Update</button></div></div>
+                    <div class="data" id="12"><span class="sub-heading">Surprise Participant 2:</span><span class="data-text"> <%=teams.surpparticipant2  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div11', event)">Edit</button><div id='div11'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.surpparticipant2  %>" id="input11"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input11').value, 'hiddenInput11')">Update</button></div></div>
+                    <div class="data" id="13"><span class="sub-heading">Programming Participant 1:</span><span class="data-text"> <%=teams.progparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div12', event)">Edit</button><div id='div12'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.progparticipant1  %>" id="input12"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input12').value, 'hiddenInput12')">Update</button></div></div>
+                    <div class="data" id="14"><span class="sub-heading">Programming Participant 2:</span><span class="data-text"> <%=teams.progparticipant2  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div13', event)">Edit</button><div id='div13'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.progparticipant2  %>" id="input13"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input13').value, 'hiddenInput13')">Update</button></div></div>
+                    <div class="data" id="15"><span class="sub-heading">Film Making Participant 1:</span><span class="data-text"> <%=teams.filmparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div14', event)">Edit</button><div id='div14'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.filmparticipant1  %>" id="input14"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input14').value, 'hiddenInput14')">Update</button></div></div>
+                    <div class="data" id="1"><span class="sub-heading">Film Making Participant 2:</span><span class="data-text"> <%=teams.filmparticipant2  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div15', event)">Edit</button><div id='div15'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.filmparticipant2  %>" id="input15"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input15').value, 'hiddenInput15')">Update</button></div></div>
+                    <div class="data" id="16"><span class="sub-heading">Film Making Participant 3:</span><span class="data-text"> <%=teams.filmparticipant3  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div16', event)">Edit</button><div id='div16'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.filmparticipant3  %>" id="input16"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input16').value, 'hiddenInput16')">Update</button></div></div>
+                    <div class="data" id="17"><span class="sub-heading">Film Making Participant 4:</span><span class="data-text"> <%=teams.filmparticipant4  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div17', event)">Edit</button><div id='div17'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.filmparticipant4  %>" id="input17"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input17').value, 'hiddenInput17')">Update</button></div></div>
+                    <div class="data" id="18"><span class="sub-heading">Gaming Participant 1:</span><span class="data-text"> <%=teams.gamingparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div18', event)">Edit</button><div id='div18'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.gamingparticipant1  %>" id="input18"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input18').value, 'hiddenInput18')">Update</button></div></div>
+                    <div class="data" id="19"><span class="sub-heading">Gaming Participant 2:</span><span class="data-text"> <%=teams.gamingparticipant2  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div19', event)">Edit</button><div id='div19'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.gamingparticipant2  %>" id="input19"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input19').value, 'hiddenInput19')">Update</button></div></div>
+                    <div class="data" id="20"><span class="sub-heading">Quiz Participant 1:</span><span class="data-text"> <%=teams.quizparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div20', event)">Edit</button><div id='div20'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.quizparticipant1  %>" id="input20"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input20').value, 'hiddenInput20')">Update</button></div></div>
+                    <div class="data" id="21"><span class="sub-heading">Robotics Participant 1:</span><span class="data-text"> <%=teams.roboticsparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div21', event)">Edit</button><div id='div21'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.roboparticipant1  %>" id="input21"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input21').value, 'hiddenInput21')">Update</button></div></div>
+                    <div class="data" id="22"><span class="sub-heading">Robotics Participant 2:</span><span class="data-text"> <%=teams.roboticsparticipant2  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div22', event)">Edit</button><div id='div22'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.roboparticipant2  %>" id="input22"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input22').value, 'hiddenInput22')">Update</button></div></div>
+                    <div class="data" id="23"><span class="sub-heading">Robotics Participant 3:</span><span class="data-text"> <%=teams.roboticsparticipant3  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div23', event)">Edit</button><div id='div23'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.roboparticipant3  %>" id="input23"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input23').value, 'hiddenInput23')">Update</button></div></div>
+                    <div class="data" id="24"><span class="sub-heading">Photography Participant 1:</span><span class="data-text"> <%=teams.photoparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div24', event)">Edit</button><div id='div24'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.photoparticipant1  %>" id="input24"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input24').value, 'hiddenInput24')">Update</button></div></div>
+                    <div class="data" id="25"><span class="sub-heading">Paint Participant 1:</span><span class="data-text"> <%=teams.paintparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div25', event)">Edit</button><div id='div25'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.paintparticipant1  %>" id="input25"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input25').value, 'hiddenInput25')">Update</button></div></div>
+                    <div class="data" id="26"><span class="sub-heading">Game Development Participant 1:</span><span class="data-text"> <%=teams.gamedevparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div26', event)">Edit</button><div id='div26'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.gamedevparticipant1  %>" id="input26"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input26').value, 'hiddenInput26')">Update</button></div></div>
+                    <div class="data" id="27"><span class="sub-heading">Game Development Participant 2:</span><span class="data-text"> <%=teams.gamedevparticipant2  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div27', event)">Edit</button><div id='div27'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.gamedevparticipant2  %>" id="input27"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input27').value, 'hiddenInput27')">Update</button></div></div>
+                    <div class="data" id="28"><span class="sub-heading">Minecraft Participant 1:</span><span class="data-text"> <%=teams.minecraftparticipant1  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div28', event)">Edit</button><div id='div28'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.minecraftparticipant1  %>" id="input28"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input28').value, 'hiddenInput28')">Update</button></div></div>
+                    <div class="data" id="29"><span class="sub-heading">Minecraft Participant 2:</span><span class="data-text"> <%=teams.minecraftparticipant2  %></span><button class='editBtn'  onclick="showEditForm('<%=teams.schName  %>', 'div29', event)">Edit</button><div id='div29'><input type="text" placeholder="Enter the Updated Value:" value="<%=teams.minecraftparticipant2  %>" id="input29"><button class='editBtn' id='editBtn1' onclick="submitUpdateForm(document.getElementById('input29').value, 'hiddenInput29')">Update</button></div></div>
+                </div>
+               
+        </div>
+
+    </div>
+    <img class="illus" src="/illus.svg">
+    <form action="/dashboard/teamUpdate" method="POST" id="hiddenFormHehehe" style="display: none">
+        <input type="text" id="hiddenInput1" value="<%=teams.creativeparticipant1  %>" name="creativeparticipant1">
+        <input type="text" id="hiddenInput2" value="<%=teams.creativeparticipant2  %>" name="creativeparticipant2">
+        <input type="text" id="hiddenInput3" value="<%=teams.creativeparticipant3  %>" name="creativeparticipant3">
+        <input type="text" id="hiddenInput4" value="<%=teams.creativeparticipant4  %>" name="creativeparticipant4">
+        <input type="text" id="hiddenInput5" value="<%=teams.creativeparticipant5  %>" name="creativeparticipant5">
+        <input type="text" id="hiddenInput6" value="<%=teams.creativeparticipant6  %>" name="creativeparticipant6">
+        <input type="text" id="hiddenInput7" value="<%=teams.crossparticipant1  %>" name="crossparticipant1">
+        <input type="text" id="hiddenInput8" value="<%=teams.crossparticipant2  %>" name="crossparticipant2">
+        <input type="text" id="hiddenInput9" value="<%=teams.gdparticipant1  %>" name="gdparticipant1">
+        <input type="text" id="hiddenInput10" value="<%=teams.surpparticipant1  %>" name="surpparticipant1">
+        <input type="text" id="hiddenInput11" value="<%=teams.surpparticipant2  %>" name="surpparticipant2">
+        <input type="text" id="hiddenInput12" value="<%=teams.progparticipant1  %>" name="progparticipant1">
+        <input type="text" id="hiddenInput13" value="<%=teams.filmparticipant1  %>" name="filmparticipant1">
+        <input type="text" id="hiddenInput14" value="<%=teams.filmparticipant2  %>" name="filmparticipant2">
+        <input type="text" id="hiddenInput15" value="<%=teams.filmparticipant3  %>" name="filmparticipant3">
+        <input type="text" id="hiddenInput16" value="<%=teams.filmparticipant4  %>" name="filmparticipant4">
+        <input type="text" id="hiddenInput17" value="<%=teams.gamingparticipant1  %>" name="gamingparticipant1">
+        <input type="text" id="hiddenInput18" value="<%=teams.gamingparticipant2  %>" name="gamingparticipant2">
+        <input type="text" id="hiddenInput19" value="<%=teams.quizparticipant1  %>" name="quizparticipant1">
+        <input type="text" id="hiddenInput20" value="<%=teams.roboticsparticipant1  %>" name="roboticsparticipant1">
+        <input type="text" id="hiddenInput21" value="<%=teams.roboticsparticipant2  %>" name="roboticsparticipant2">
+        <input type="text" id="hiddenInput22" value="<%=teams.roboticsparticipant3  %>" name="roboticsparticipant3">
+        <input type="text" id="hiddenInput23" value="<%=teams.photoparticipant1  %>" name="photoparticipant1">
+        <input type="text" id="hiddenInput24" value="<%=teams.paintparticipant1  %>" name="paintparticipant1">
+        <input type="text" id="hiddenInput25" value="<%=teams.gamedevparticipant1  %>" name="gamedevparticipant1">
+        <input type="text" id="hiddenInput26" value="<%=teams.gamedevparticipant2  %>" name="gamedevparticipant2">
+        <input type="text" id="hiddenInput27" value="<%=teams.minecraftparticipant1  %>" game="minecraftparticipant1">
+        <input type="text" id="hiddenInput28" value="<%=teams.minecraftparticipant2  %>" name="minecraftparticipant2">
+    </form>
+</div>
+
+<script>
+    const back = () => {
+        window.location.href = '/dashboard'
+    }
+    var countDownDate = new Date("Nov 3, 2023 09:00:00").getTime();
+    var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hrs").innerHTML = hours;
+    document.getElementById("mins").innerHTML = minutes;
+    document.getElementById("secs").innerHTML = seconds;
+    if (distance < 0) {
+        document.getElementById("days").innerHTML = "00";
+        document.getElementById("hrs").innerHTML = "00";
+        document.getElementById("mins").innerHTML = "00";
+        document.getElementById("secs").innerHTML = "00";
+    }
+}, 1000);
+
+function showEditForm(valueId, elementId, e) {
+    document.getElementById(elementId).style.display = 'block';
+    e.target.style.display = 'none';
+    console.log(valueId, elementId, e)
+}
+
+function submitUpdateForm(value, inputId) {
+    document.getElementById(inputId).value = value;
+    document.getElementById('hiddenFormHehehe').submit()
+}
+</script>
+
+<style>
+    .countdown{
+        margin-left: -.5em;
+    }
+
+    .editBtn {
+        border: none;
+        outline: none;
+        width: 50% !important;
+        margin: 10px auto !important;
+        background: coral !important;
+        color: white;
+        background: light
+    }
+
+    .data div {
+        display: none;
+    }
+
+    .card {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sub-heading {
+        background: #111;
+        color: #16e16e;
+        padding: 10px;
+    }
+
+    .data {
+        width: 24%;
+        height:10%;
+        margin-right: 1%;
+        margin-top: 10px;
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        flex-direction: column;
+        color: #000 !important;
+        text-align: center;
+    }
+
+    .data-text {
+        padding: 10px;
+    }
+    .countdown li p {
+        margin-left: 1.5em !important;
+    }
+    .countdown li span{
+        margin-left: 2em !important;
+    }
+
+    .countdown {
+        font-size: 10vw;
+    }
+
+    .countdown {
+        color: #eee;
+        font-size: 1vw;
+        font-weight: 500;
+        justify-content: space-between;
+        display: flex;
+        list-style-type: none;
+        padding: 1em;
+        width: 35vw;
+        margin-top: 2.5vw;
+    }
+
+    .countdown li {
+        text-align: center;
+        width: 25em;
+        margin-left: -3.5em;
+    }
+    
+    .countdown li p{
+        margin-left: 1.5em;
+    }
+
+    .landing {
+        display: flex;
+        margin-top: 5vw;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .illus {
+        width: 40vw;
+        margin-left: 5vw;
+        position: absolute;
+        z-index: -1;
+        right: 0;
+    }
+
+    .landing-content h1 {
+        font-size: 5vw;
+        letter-spacing: 1px;
+        margin-top: 3.5vw;
+    }
+
+    .landing-content p {
+        font-size: 1.5vw;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 2.5vw;
+    }
+
+    .buttons-div {
+        margin-top: 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .landing button {
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        background: #111;
+        color: #eee;
+        padding: 20px;
+        width: 15vw;
+        margin-right: 2.5vw;
+        font-size: 1.1vw;
+    }
+
+    .register-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .register-div button {
+        margin-top: 1vw;
+        width: 33vw;
+    }
+
+    @media screen and (max-width: 768px) {
+        .landing {
+            display: block;
+        }
+
+        .headline {
+            font-size: 10vw !important;
+            margin-left: 2.5vw;
+        }
+
+        .byline {
+            margin-left: 2.5vw;
+            font-size: 5vw !important;
+        }
+
+        .buttons-div {
+            display: grid;
+        }
+
+        .landing button {
+            width: 80vw;
+            margin: 2.5vw;
+            font-size: 5vw;
+        }
+
+        .illus {
+            display: none;
+        }
+    }
+
+    
+</style>

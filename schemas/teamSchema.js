@@ -6,7 +6,7 @@ const nonReqString = { type: String };
 
 const teamSchema = new Schema(
     {
-        schId: reqString,
+        schId: nonReqString,
         schName: reqString,
         creativeparticipant1: nonReqString,
         creativeparticipant2: nonReqString,
