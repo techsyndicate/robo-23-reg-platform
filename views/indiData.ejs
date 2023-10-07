@@ -18,9 +18,12 @@
                     <form action="/admin/indiData/checkin/<%= indi[i].phone %>" method="POST">
                         <button type="submit" style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #ffffff; color: #000; border-radius: 10px;">Check In</button>
                     </form>
-                  <% } else if(indi[i].checkedIn === true) { %>
-                    <button style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #000; color: #ffffff ; cursor: none; ">Checked In</button>
-                  <% } %>
+                    <% } else if(indi[i].checkedIn === true) { %>
+                        <button style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #000; color: #ffffff ; cursor: none; ">Checked In</button>
+                        <% } %>
+                    <form action="/admin/indiData/<%= indi[i].firstName %>" method="post">
+                        <button type="submit">Edit details</button>
+                    </form>
             </div>
             <% } %>
     </div>
