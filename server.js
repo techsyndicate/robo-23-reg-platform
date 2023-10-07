@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+// const { Client } = require('whatsapp-web.js');
 //modules
 const express = require('express'),
     bodyParser = require('body-parser'),
@@ -13,15 +14,18 @@ const express = require('express'),
     expressLayouts = require('express-ejs-layouts'),
     mongoose = require('mongoose');
     nodemailer = require('nodemailer')
-    twilio = require('twilio')
-
+    // twilio = require('twilio')
+    // client = new Client();
+    // qrcode = require('qrcode-terminal');
+    request = require('request')
 //routes
 const landingRouter = require('./routers/landingRouter.js'),
     loginRouter = require('./routers/loginRouter.js'),
     dashboardRouter = require('./routers/dashboardRouter.js'),
-    regRouter = require('./routers/regRouter.js');
-    inviteRouter = require('./routers/inviteRouter.js');
-    adminRouter = require('./routers/adminRouter.js');
+    regRouter = require('./routers/regRouter.js'),
+    inviteRouter = require('./routers/inviteRouter.js'),
+    adminRouter = require('./routers/adminRouter.js'),
+    schoolData = require('./routers/schoolData.js');
 
 const app = express(),
     PORT = process.env.PORT || 5000;
@@ -67,6 +71,34 @@ app.use('/dashboard', dashboardRouter)
 app.get('/404', (req, res) => {
     res.render('404', { user: req.user })
 });
+
+// var options = {
+//   method: 'POST',
+//   url: 'https://api.ultramsg.com/instance63795/messages/chat',
+//   headers: {'content-type': ' application/x-www-form-urlencoded'},
+//   form: {
+//     "token": "bzh5zz0goyugyzxa",
+//     "to": "+919873957989",
+//     "body": "WhatsApp API on UltraMsg.com works good"
+// }
+// };
+
+// request(options, function (error, response, body) {
+//   if (error) throw new Error(error);
+
+//   console.log(body);
+// });
+
+
+app.post('/logout', (req, res) => {
+    req.logout((err) => {
+        if (err) {
+            
+        }
+    })
+    res.redirect("/")
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`)

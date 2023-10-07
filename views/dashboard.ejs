@@ -14,7 +14,9 @@
             <button onclick="team()">Manage Teams</button>
         </div>
         <br><br>
-
+            <!-- <button onclick="register('school')">Check - In</button>
+        </div>
+        <br><br> -->
     </div>
     <img class="illus" src="/illus.svg">
 </div>
@@ -23,9 +25,15 @@
     const team = () => {
         window.location.href = '/dashboard/team'
     }
+    const invite = () => {
+        window.location.href = '/invite'
+    }
     const register = (x) => {
         window.location.href = '/register/'+x+'/'
     }
+    // const team = () => {
+    //     window.location.href = '/login'
+    // }
 
     var countDownDate = new Date("Nov 3, 2023 09:00:00").getTime();
     var x = setInterval(function() {
