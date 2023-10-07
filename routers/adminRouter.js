@@ -30,7 +30,7 @@ router.get('/schoolData', async (req, res) => {
         }
     }
     // console.log(schoolDetails)
-    console.log(schools)
+    // console.log(schools)
     res.render('schoolData', {  user: req.user, schools, checkIn: checkIn  })
 })
 
@@ -51,8 +51,22 @@ router.get('/indiData', async (req, res) => {
             indi.push(indiDetails[i].indi);
         }
     }
-    console.log(indi)
+    // console.log(indi)
     res.render('indiData', {  user: req.user, indi, checkIn: checkIn  })
+})
+router.post('/indiData/:id', async (req, res) => {
+    var id = req.params.id
+    console.log(id) // sadads
+    const allUsers = await User.find({regType: "indi"})
+    var toSend;
+    for (let i = 0; i < allUsers.length; i++) {
+        if (allUsers[i].indi.firstName === id) {
+            toSend = allUsers[i].indi
+        }
+    }
+    // console.log(toSend)
+    // console.log(requiredUser)
+    res.render('checkInIndi', {user: toSend})
 })
 
 router.get('/checkin', (req,res) => {
@@ -71,7 +85,7 @@ router.post('/schoolData/:id', async (req, res) => {
             toSend = allUsers[i].school
         }
     }
-    console.log(toSend)
+    // console.log(toSend)
     // console.log(requiredUser)
     res.render('checkInSchool', {user: toSend})
 })
@@ -79,7 +93,7 @@ router.post('/schoolData/:id', async (req, res) => {
 router.post('/schoolData/:id/edit', async (req,res) => {
     var id = req.params.id
     const { schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone } = req.body
-    console.log(schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone )
+    // console.log(schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone )
     var reqUser;
     const allUsers = await User.find({regType: "school"})
     // console.log(allUsers)
@@ -104,10 +118,49 @@ router.post('/schoolData/:id/edit', async (req,res) => {
             teacherPhone: teacherPhone,
             studentName: studentName,
             studentEmail: studentEmail,
-            studentPhone: studentPhone
+            studentPhone: studentPhone,
+            pass: reqUser.pass
         }}
     }).then(console.log("HO GAYA"))
     res.redirect('/admin/schoolData')
+})
+
+router.post('/indiData/:id/edit', async (req, res) => {
+    var id = req.params.id
+    const { firstName,
+        lastName,
+        email,
+        dob,
+        grade,
+        phone,
+        schname
+    } = req.body
+    
+    var reqUser;
+    const allUsers = await User.find({regType: "indi"})
+    // console.log(allUsers)
+    for (var i = 0; i < allUsers.length; i++) {
+        // console.log(allUsers[i])
+        if (allUsers[i].indi.firstName === id) {
+            // console.log(allUsers[i])
+            reqUser = allUsers[i]
+        }
+    }
+    console.log(reqUser)
+    await User.updateOne({_id: reqUser._id},
+    {
+        $set: {indi:{
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            dob: dob,
+            grade: grade,
+            schname: schname,
+            pass: reqUser.pass
+        }}
+    }).then(console.log("HO GAYA"))
+    res.redirect('/admin/indiData')
 })
 
 //export router

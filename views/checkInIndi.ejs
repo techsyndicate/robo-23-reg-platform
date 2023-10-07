@@ -1,25 +1,38 @@
-<h1 style="text-align: center; margin-bottom: 5vw; color: #16e16e; font-size: 3rem;">Edit School</h1>
+<h1 style="text-align: center; margin-bottom: 5vw; color: #16e16e; font-size: 3rem;">Edit Indis</h1>
 
-<form action="/admin/schoolData/<%= user.schoolName %>/edit" method="post">
+<form action="/admin/indiData/<%= user.firstName %>/edit" method="post">
+    <div class="wrapper2">
     <% for (const [key, value] of Object.entries(user)) { %>
         <% if (key === "pass") {continue} %>
+        <% if (key === "discordCode") { %>
+            <div class="teamForm">
+                <p><%= key %></p>
+                <input type="text" name="<%= key %>" value="<%= value %>" id="">
+            </div>
+        <% } else { %>
         <div class="teamForm">
-            <% for (let i = 0; i < key.length; i++) { %>
-                <% if (/[A-Z]/.test(key[i])) { %>
-                  <% const newArr = key.split(key[i]); %>
-                  <% const newStr = newArr[0] + " " + key[i] + newArr[1]; %>
-                  <% const newestStr = newStr[0].toUpperCase() + newStr.slice(1); %>
-                  <% // newestStr is the final string %>
-                  <p><%= newestStr %></p>
-                <% } %>
-              <% } %>
+            <p><%= key %></p>
             <input type="text" name="<%= key %>" value="<%= value %>" required id="">
         </div>
+        <% } %>
     <% }%>
+    <br>
+</div>
     <button id="teambtn" type="submit">
         Modify
     </button>
+</form>
     <style>
+    .wrapper2 {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 3vw;
+        align-items: center;
+        justify-content: center;   
+     }
     form {
         display: flex;
         flex-wrap: wrap;
@@ -93,6 +106,7 @@
     }
 
     #teamBtn {
+        align-self: center;
         display: flex;
         justify-content: center;
         align-items: center;
