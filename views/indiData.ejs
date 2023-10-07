@@ -14,13 +14,11 @@
                 <p class="data"><span class="sub-heading">Name:</span> <%=indi[i].firstName + ' ' + indi[i].lastName  %></p>
                 <p class="data"><span class="sub-heading">Phone No. :</span> <%=indi[i].phone  %></p>
                 <p class="data"><span class="sub-heading">Email:</span> <%=indi[i].email  %></p>
-                <% if (!checkIn) { %>
-                    <button onclick="checkIn()" style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #ffffff; color: #000; ">Check In</button>
-                  <% } else if(checkIn) { %>
-                    <form action="/checkin" method="post">
-                        <button style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #000; color: #ffffff ; cursor: none; ">Checked In</button>
-                    </form>
-                  <% } %>
+                <form action="/admin/indiData/<%= indi[i].firstName %>" method="post">
+                    <button type="submit">
+                        Check In
+                    </button>
+                </form>
             </div>
             <% } %>
     </div>

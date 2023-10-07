@@ -25,8 +25,12 @@ router.get('/schoolData', async (req, res) => {
         if (schoolDetails[i].regType === "school") {
             schools.push(schoolDetails[i].school);
         }
+        if (schoolDetails[i].regType === "indi") {
+            schools.push(schoolDetails[i].indi);
+        }
     }
-    console.log(schools)
+    // console.log(schoolDetails)
+    // console.log(schools)
     res.render('schoolData', {  user: req.user, schools, checkIn: checkIn  })
 })
 
@@ -47,14 +51,116 @@ router.get('/indiData', async (req, res) => {
             indi.push(indiDetails[i].indi);
         }
     }
-    console.log(indi)
+    // console.log(indi)
     res.render('indiData', {  user: req.user, indi, checkIn: checkIn  })
+})
+router.post('/indiData/:id', async (req, res) => {
+    var id = req.params.id
+    console.log(id) // sadads
+    const allUsers = await User.find({regType: "indi"})
+    var toSend;
+    for (let i = 0; i < allUsers.length; i++) {
+        if (allUsers[i].indi.firstName === id) {
+            toSend = allUsers[i].indi
+        }
+    }
+    // console.log(toSend)
+    // console.log(requiredUser)
+    res.render('checkInIndi', {user: toSend})
 })
 
 router.get('/checkin', (req,res) => {
     req.user.checkedIn = true;
     req.user.save();
     res.redirect('/admin');
+})
+
+router.post('/schoolData/:id', async (req, res) => {
+    var id = req.params.id
+    console.log(id) // sadads
+    const allUsers = await User.find({regType: "school"})
+    var toSend;
+    for (let i = 0; i < allUsers.length; i++) {
+        if (allUsers[i].school.schoolName === id) {
+            toSend = allUsers[i].school
+        }
+    }
+    // console.log(toSend)
+    // console.log(requiredUser)
+    res.render('checkInSchool', {user: toSend})
+})
+
+router.post('/schoolData/:id/edit', async (req,res) => {
+    var id = req.params.id
+    const { schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone } = req.body
+    // console.log(schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone )
+    var reqUser;
+    const allUsers = await User.find({regType: "school"})
+    // console.log(allUsers)
+    for (var i = 0; i < allUsers.length; i++) {
+        // console.log(allUsers[i])
+        if (allUsers[i].school.schoolName === id) {
+            reqUser = allUsers[i]
+        }
+    }
+    // console.log(reqUser)
+    await User.updateOne(reqUser,
+    {
+        $set: {school:{
+            schoolName: schoolName,
+            schoolEmail: schoolEmail,
+            schoolAddress: schoolAddress,
+            clubName: clubName,
+            clubEmail: clubEmail,
+            clubWebsite: clubWebsite,
+            teacherName: teacherName,
+            teacherEmail:  teacherEmail,
+            teacherPhone: teacherPhone,
+            studentName: studentName,
+            studentEmail: studentEmail,
+            studentPhone: studentPhone,
+            pass: reqUser.pass
+        }}
+    }).then(console.log("HO GAYA"))
+    res.redirect('/admin/schoolData')
+})
+
+router.post('/indiData/:id/edit', async (req, res) => {
+    var id = req.params.id
+    const { firstName,
+        lastName,
+        email,
+        dob,
+        grade,
+        phone,
+        schname
+    } = req.body
+    
+    var reqUser;
+    const allUsers = await User.find({regType: "indi"})
+    // console.log(allUsers)
+    for (var i = 0; i < allUsers.length; i++) {
+        // console.log(allUsers[i])
+        if (allUsers[i].indi.firstName === id) {
+            // console.log(allUsers[i])
+            reqUser = allUsers[i]
+        }
+    }
+    console.log(reqUser)
+    await User.updateOne({_id: reqUser._id},
+    {
+        $set: {indi:{
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            dob: dob,
+            grade: grade,
+            schname: schname,
+            pass: reqUser.pass
+        }}
+    }).then(console.log("HO GAYA"))
+    res.redirect('/admin/indiData')
 })
 
 //export router
