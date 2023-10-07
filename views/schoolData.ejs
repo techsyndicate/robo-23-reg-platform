@@ -14,6 +14,9 @@
                 <p class="data"><span class="sub-heading">School Name:</span> <%=schools[i].schoolName  %></p>
                 <p class="data"><span class="sub-heading">School Address:</span> <%=schools[i].schoolAddress  %></p>
                 <p class="data"><span class="sub-heading">School Email:</span> <%=schools[i].schoolEmail  %></p>
+                <form action="/admin/schoolData/<%=schools[i].schoolName %>" method="post">
+                    <button type="submit">Check-in</button>
+                </form>
             </div>
             <% } %>
     </div>
