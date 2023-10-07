@@ -19,7 +19,7 @@ const express = require('express'),
 const landingRouter = require('./routers/landingRouter.js'),
     loginRouter = require('./routers/loginRouter.js'),
     dashboardRouter = require('./routers/dashboardRouter.js'),
-    regRouter = require('./routers/regRouter.js');
+    regRouter = require('./routers/regRouter.js'),
     inviteRouter = require('./routers/inviteRouter.js')
 
 const app = express(),
