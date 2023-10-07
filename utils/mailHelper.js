@@ -1,7 +1,8 @@
 const nodemailer = require('nodemailer');
+const ejs = require('ejs')
 
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'outlook',
   auth: {
     user: process.env.FROM_EMAIL,
     pass: process.env.EMAIL_PASS
@@ -20,4 +21,17 @@ async function sendMail(to, subject, text, html) {
       return await transporter.sendMail(mailOptions);
 }
 
-module.exports = sendMail;
+const renderFile = (file, data) => {
+  return new Promise((resolve) => {
+    ejs.renderFile(file, data, (err, result) => {
+      if (err) {
+        console.log(err);
+        return err;
+      }
+      resolve(result);
+    });
+  });
+};
+
+
+module.exports =  {sendMail, renderFile};
