@@ -14,23 +14,12 @@
                 <p class="data"><span class="sub-heading">School Name:</span> <%=schools[i].schoolName  %></p>
                 <p class="data"><span class="sub-heading">School Address:</span> <%=schools[i].schoolAddress  %></p>
                 <p class="data"><span class="sub-heading">School Email:</span> <%=schools[i].schoolEmail  %></p>
-                <button onclick="checkIn()" style="display: flex; justify-content: center; align-items: center;">Check In</button>
-                <% if (!checkIn) { %>
-                    <button onclick="checkIn()" style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #ffffff; color: #000; ">Check In</button>
-                  <% } else if(checkIn) { %>
-                    <form action="/checkin" method="post">
-                        <button style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #000; color: #ffffff ; cursor: none; ">Checked In</button>
-                    </form>
-                  <% } %>
+                <form action="/admin/schoolData/<%= schools[i].schoolName %>" method="POST">
+                    <button type="submit">Check in </button>
+                </form>
             </div>
             <% } %>
     </div>
-    <script>
-        const checkIn = () => {
-        window.location.href = '/admin/checkin'
-    }
-    </script>
-    </script>
     <style>
         .sub-heading {
             font-weight: 600;

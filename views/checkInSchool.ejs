@@ -1,4 +1,157 @@
-<form action="/schoolData"></form>
-<% for (const [key, value] of Object.entries(user)) { %>
-    <p><%= key %>: <%= value %></p>
-<% }%>
+<h1 style="text-align: center; margin-bottom: 5vw; color: #16e16e; font-size: 3rem;">Edit School</h1>
+
+<form action="/admin/schoolData/<%= user.schoolName %>/edit" method="post">
+    <% for (const [key, value] of Object.entries(user)) { %>
+        <% if (key === "pass") {continue} %>
+        <div class="teamForm">
+            <p><%= key %></p>
+            <input type="text" name="<%= key %>" value="<%= value %>" required id="">
+        </div>
+    <% }%>
+    <button id="teambtn" type="submit">
+        Modify
+    </button>
+    <style>
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 3vw;
+        align-items: center;
+        justify-content: center;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+    body {
+        background: black;
+        color: white;
+        font-family: 'Outfit', sans-serif;
+    }
+
+    p {
+        font-size: 1.5rem;
+    }
+
+    .col-1,
+    .col-2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        height: auto;
+    }
+
+    .col-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+    }
+
+    .teamForm {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* width: 100%; */
+    }
+
+    .teamForm input {
+        width: 30vw;
+        height: 3vw;
+        border: none;
+        background-color: transparent;
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        font-size: 1.3vw;
+        font-weight: 500;
+        margin-top: .5vw;
+        border-radius: 5px;
+        margin-bottom: .5vw;
+        padding: 1.5vw;
+        transition: all 0.5s ease;
+        letter-spacing: 1px;
+    }
+
+    .teamForm input:focus {
+        outline: none;
+        border: 2px solid #16e16e;
+    }
+
+    .teamForm h2 {
+        font-size: 2vw;
+    }
+
+    #teamBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #16e16e;
+        color: #000;
+        border: none;
+        width: 16vw;
+        height: 3vw;
+        border-radius: 2vw;
+        font-size: 1.25vw;
+        font-family: 'Outfit', sans-serif;
+        margin-bottom: 2vw;
+        margin-top: 3vw;
+        cursor: pointer;
+        transition: all 0.5s ease;
+    }
+
+    #teamBtn:hover {
+        border-radius: 5px;
+    }
+
+    #logoutbtn {
+        background-color: #16e16e;
+        color: #000;
+        border: none;
+        width: 16vw;
+        height: 3vw;
+        border-radius: 2vw;
+        font-size: 1.25vw;
+        font-family: 'Outfit', sans-serif;
+        margin-bottom: 2vw;
+    }
+
+    .team {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media screen and (max-width: 768px) {
+        p {
+            font-size: 1rem;
+            height: 1vh;
+        }
+
+        .col-container {
+            flex-direction: column;
+        }
+
+        .teamForm input {
+            width: 80vw;
+            height: 10vw;
+            font-size: 1.1rem;
+        }
+
+        #logoutbtn,
+        #teamBtn {
+            width: 80vw;
+            height: 10vw;
+            font-size: 1.1rem;
+        }
+
+
+        .teamForm h4 {
+            font-size: 1.2rem;
+        }
+    }
+    </style>
+</form>

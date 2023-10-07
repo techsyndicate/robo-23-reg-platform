@@ -29,6 +29,7 @@ router.get('/schoolData', async (req, res) => {
             schools.push(schoolDetails[i].indi);
         }
     }
+    // console.log(schoolDetails)
     console.log(schools)
     res.render('schoolData', {  user: req.user, schools, checkIn: checkIn  })
 })
@@ -58,6 +59,55 @@ router.get('/checkin', (req,res) => {
     req.user.checkedIn = true;
     req.user.save();
     res.redirect('/admin');
+})
+
+router.post('/schoolData/:id', async (req, res) => {
+    var id = req.params.id
+    console.log(id) // sadads
+    const allUsers = await User.find({regType: "school"})
+    var toSend;
+    for (let i = 0; i < allUsers.length; i++) {
+        if (allUsers[i].school.schoolName === id) {
+            toSend = allUsers[i].school
+        }
+    }
+    console.log(toSend)
+    // console.log(requiredUser)
+    res.render('checkInSchool', {user: toSend})
+})
+
+router.post('/schoolData/:id/edit', async (req,res) => {
+    var id = req.params.id
+    const { schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone } = req.body
+    console.log(schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone )
+    var reqUser;
+    const allUsers = await User.find({regType: "school"})
+    // console.log(allUsers)
+    for (var i = 0; i < allUsers.length; i++) {
+        // console.log(allUsers[i])
+        if (allUsers[i].school.schoolName === id) {
+            reqUser = allUsers[i]
+        }
+    }
+    // console.log(reqUser)
+    await User.updateOne(reqUser,
+    {
+        $set: {school:{
+            schoolName: schoolName,
+            schoolEmail: schoolEmail,
+            schoolAddress: schoolAddress,
+            clubName: clubName,
+            clubEmail: clubEmail,
+            clubWebsite: clubWebsite,
+            teacherName: teacherName,
+            teacherEmail:  teacherEmail,
+            teacherPhone: teacherPhone,
+            studentName: studentName,
+            studentEmail: studentEmail,
+            studentPhone: studentPhone
+        }}
+    }).then(console.log("HO GAYA"))
+    res.redirect('/admin/schoolData')
 })
 
 //export router
