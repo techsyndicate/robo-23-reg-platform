@@ -32,6 +32,7 @@ const userSchema = new Schema(
             grade: nonReqString,
             schname: nonReqString,
         },
+        checkedIn: { type: Boolean, default: false },
         discordCode: nonReqString,
         teamSchemaID: nonReqString,
         admin: { type: Boolean, default: false },

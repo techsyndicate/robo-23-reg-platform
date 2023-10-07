@@ -4,16 +4,21 @@
         <a href="/" class="nav-branding"><img width="50px" src="/logo.png"></a>
 
         <ul class="nav-menu">
-            <% if (typeof user !="undefined" && typeof user.admin !="undefined" && !user.admin) { %>
-                <li class="nav-item">
-                    <a href="/dashboard" class="nav-link">Dashboard</a>
-                </li>
-                <% if (user.admin) { %>
+                <% if (typeof user !="undefined" && typeof user.admin !="undefined" ) { %>
+                    <li class="nav-item">
+                        <a href="/dashboard" class="nav-link">Dashboard</a>
+                    </li>
+                    
+                <% if (user.admin==true) { %>
                     <li class="nav-item">
                         <a href="/admin" class="nav-link">Admin</a>
                     </li>
                     <% } %>
-                        <% } %>
+                    
+                <li class="nav-item">
+                    <a href="/register/logout" class="nav-link">Logout</a>
+                </li>
+                <% } %>
         </ul>
 
         <% if (typeof user !="undefined" ) { %>

@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All the schools</title>
+    <title>All the Individual Registrations</title>
 </head>
 <body>
-    <h1>Schools</h1>
+    <h1>Individual Registrations</h1>
     <div class="container">
 
-        <% for (var i = 0; i < schools.length; i ++) { %>
+        <% for (var i = 0; i < indi.length; i ++) { %>
             <div class="card">
-                <p class="data"><span class="sub-heading">School Name:</span> <%=schools[i].schoolName  %></p>
-                <p class="data"><span class="sub-heading">School Address:</span> <%=schools[i].schoolAddress  %></p>
-                <p class="data"><span class="sub-heading">School Email:</span> <%=schools[i].schoolEmail  %></p>
-                <button onclick="checkIn()" style="display: flex; justify-content: center; align-items: center;">Check In</button>
+                <p class="data"><span class="sub-heading">Name:</span> <%=indi[i].firstName + ' ' + indi[i].lastName  %></p>
+                <p class="data"><span class="sub-heading">Phone No. :</span> <%=indi[i].phone  %></p>
+                <p class="data"><span class="sub-heading">Email:</span> <%=indi[i].email  %></p>
                 <% if (!checkIn) { %>
                     <button onclick="checkIn()" style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #ffffff; color: #000; ">Check In</button>
                   <% } else if(checkIn) { %>
@@ -29,7 +28,6 @@
         const checkIn = () => {
         window.location.href = '/admin/checkin'
     }
-    </script>
     </script>
     <style>
         .sub-heading {

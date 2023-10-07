@@ -1,7 +1,7 @@
 <div class="landing">
     <div class="landing-content">
         <h1 class="headline">Robotronics '23</h1>
-        <p class="byline">Admin platform for Robotronics '23</p>
+        <p class="byline">Enter names of your team participants for Robotronics '23</p>
 
         <ul class="countdown">
             <li><p>days</p><span id="days"></span></li>
@@ -11,22 +11,51 @@
         </ul>
 
         <div class="register-div">
-            <button onclick="schoolData()">See School Reg Data</button>
-            <button onclick="indiData()">See Indi Reg Data</button>
+            <button onclick="back">Go Back</button>
         </div>
         <br><br>
+        <form action="/dashboard/teamCreate" method="POST">
+            <input type="text" placeholder="Creative Participant 1" name="creativeparticipant1">
+            <input type="text" placeholder="Creative Participant 2" name="creativeparticipant2">
+            <input type="text" placeholder="Creative Participant 3" name="creativeparticipant3">
+            <input type="text" placeholder="Creative Participant 4" name="creativeparticipant4">
+            <input type="text" placeholder="Creative Participant 5" name="creativeparticipant5">
+            <input type="text" placeholder="Creative Participant 6" name="creativeparticipant6">
+            <input type="text" placeholder="Cross Participant 1" name="crossparticipant1">
+            <input type="text" placeholder="Cross Participant 2" name="crossparticipant2">
+            <input type="text" placeholder="GD Participant 1" name="gdparticipant1">
+            <input type="text" placeholder="Surprise Participant 1" name="surpparticipant1">
+            <input type="text" placeholder="Surprise Participant 2" name="surpparticipant2">
+            <input type="text" placeholder="Programming Participant 1" name="progparticipant1">
+            <input type="text" placeholder="Programming Participant 2" name="progparticipant2">
+            <input type="text" placeholder="Film Making Participant 1" name="filmparticipant1">
+            <input type="text" placeholder="Film Making Participant 2" name="filmparticipant2">
+            <input type="text" placeholder="Film Making Participant 3" name="filmparticipant3">
+            <input type="text" placeholder="Film Making Participant 4" name="filmparticipant4">
+            <input type="text" placeholder="Gaming Participant 1" name="gamingparticipant1">
+            <input type="text" placeholder="Gaming Participant 2" name="gamingparticipant2">
+            <input type="text" placeholder="Quiz Participant 1" name="quizparticipant1">
+            <input type="text" placeholder="Robotics Participant 1" name="roboticsparticipant1">
+            <input type="text" placeholder="Robotics Participant 2" name="roboticsparticipant2">
+            <input type="text" placeholder="Robotics Participant 3" name="roboticsparticipant3">
+            <input type="text" placeholder="Photography Participant 1" name="photoparticipant1">
+            <input type="text" placeholder="Paint Participant 1" name="paintparticipant1">
+            <input type="text" placeholder="Game Development Participant 1" name="gamedevparticipant1">
+            <input type="text" placeholder="Game Development Participant 2" name="gamedevparticipant2">
+            <input type="text" placeholder="Minecraft Participant 1" name="minecraftparticipant1">
+            <input type="text" placeholder="Minecraft Participant 2" name="minecraftparticipant2">
+            <button type="submit">Submit</button>
+        </form>
+        </div>
+
     </div>
     <img class="illus" src="/illus.svg">
 </div>
 
 <script>
-    const schoolData = () => {
-        window.location.href = '/admin/schoolData'
+    const back = () => {
+        window.location.href = '/dashboard'
     }
-    const indiData = () => {
-        window.location.href = '/admin/indiData'
-    }
-
     var countDownDate = new Date("Nov 3, 2023 09:00:00").getTime();
     var x = setInterval(function() {
     var now = new Date().getTime();
@@ -49,10 +78,6 @@
 </script>
 
 <style>
-    body{
-        overflow-x: hidden;
-    }
-
     .countdown{
         margin-left: -.5em;
     }
@@ -176,5 +201,3 @@
 
     
 </style>
-
-
