@@ -1,238 +1,237 @@
-<div class="landing">
-    <div class="landing-content">
-        <h1 class="headline">Robotronics '23</h1>
-        <p class="byline">Registration platform for Robotronics '23</p>
+<div class="team">
+    <h1 style="color: #16e16e; text-align: center">Edit Team</h1>
+    <div class="teamForm">
+        <p name="schName" id="schName">School Name: <%= user.school.schoolName %>
+        </p>
+        <input name="schId" id="schId" type="hidden" value="<%= user.discordCode %>">
+        <p name="schName" id="schName">Discord Code: <%= user.discordCode %>
+        </p>
+        <form class="col-container" method="post" action="/dashboard.teamUpdate">
+            <div class="col-1">
 
-        <ul class="countdown">
-            <li><p>days</p><span id="days"></span></li>
-            <li><p>hrs</p><span id="hrs"></span></li>
-            <li><p>mins</p><span id="mins"></span></li>
-            <li style="color: #16e16e;"><p>sec</p><span id="secs"></span></li>
-        </ul>
+                <h4>Creative</h4>
+                <input name="creativeparticipant1" id="creativeparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.creativeparticipant1 %>"> <br><br>
+                <input name="creativeparticipant2" id="creativeparticipant2" type="text" autocomplete="off"
+                    placeholder="Participant 2 Name" value="<%= team.creativeparticipant2 %>"> <br><br>
+                <input name="creativeparticipant3" id="creativeparticipant3" type="text" autocomplete="off"
+                    placeholder="Participant 3 Name" value="<%= team.creativeparticipant3 %>"> <br><br>
+                <input name="creativeparticipant4" id="creativeparticipant4" type="text" autocomplete="off"
+                    placeholder="Participant 4 Name" value="<%= team.creativeparticipant4 %>"> <br><br>
 
-        <div class="register-div">
-            <button onclick="back">Go Back</button>
+                <h3>Crossword</h3>
+                <input name="crossparticipant1" id="crossparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.crossparticipant1 %>"> <br><br>
+                <input name="crossparticipant2" id="crossparticipant2" type="text" autocomplete="off"
+                    placeholder="Participant 2 Name" value="<%= team.crossparticipant2 %>"> <br><br>
+
+                <h3>Programming</h3>
+                <input name="progparticipant1" id="progparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.progparticipant1 %>"> <br><br>
+                <input name="progparticipant2" id="progparticipant2" type="text" autocomplete="off"
+                    placeholder="Participant 2 Name" value="<%= team.progparticipant2 %>"> <br><br>
+
+                <h3>Group Discussion</h3>
+                <input name="gdparticipant1" id="gdparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.gdparticipant1 %>"> <br><br>
+
+
+                <h3>Surprise</h3>
+                <input name="surpparticipant1" id="surpparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.surpparticipant1 %>"> <br><br>
+                <input name="surpparticipant2" id="surpparticipant2" type="text" autocomplete="off"
+                    placeholder="Participant 2 Name" value="<%= team.surpparticipant2 %>"> <br><br>
+
+                <h3>Senior Robotics</h3>
+                <input name="roboticsparticipant1" id="roboticsparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.roboticsparticipant1 %>"> <br><br>
+                <input name="roboticsparticipant2" id="roboticsparticipant2" type="text" autocomplete="off"
+                    placeholder="Participant 2 Name" value="<%= team.roboticsparticipant2 %>"> <br><br>
+                <input name="roboticsparticipant3" id="roboticsparticipant3" type="text" autocomplete="off"
+                    placeholder="Participant 3 Name" value="<%= team.roboticsparticipant3 %>"> <br><br>
+
+            </div>
+
+
+            <div class="col-2">
+                <h3>Junior Robotics</h3>
+                <input name="roboticsparticipant1" id="roboticsparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.roboticsparticipant1 %>"> <br><br>
+                <input name="roboticsparticipant2" id="roboticsparticipant2" type="text" autocomplete="off"
+                    placeholder="Participant 2 Name" value="<%= team.roboticsparticipant2 %>"> <br><br>
+
+                <h3>Gaming</h3>
+                <input name="gamingparticipant1" id="gamingparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.gamingparticipant1 %>"> <br><br>
+                <input name="gamingparticipant2" id="gamingparticipant2" type="text" autocomplete="off"
+                    placeholder="Participant 2 Name" value="<%= team.gamingparticipant2 %>"> <br><br>
+
+                <h3>Film Making</h3>
+                <input name="filmparticipant1" id="filmparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.filmparticipant1 %>"> <br><br>
+                <input name="filmparticipant2" id="filmparticipant2" type="text" autocomplete="off"
+                    placeholder="Participant 2 Name" value="<%= team.filmparticipant2 %>"> <br><br>
+                <input name="filmparticipant3" id="filmparticipant3" type="text" autocomplete="off"
+                    placeholder="Participant 3 Name" value="<%= team.filmparticipant3 %>"> <br><br>
+                <input name="filmparticipant4" id="filmparticipant4" type="text" autocomplete="off"
+                    placeholder="Participant 4 Name" value="<%= team.filmparticipant4 %>"> <br><br>
+
+                <h3>Photography</h3>
+                <input name="photoparticipant1" id="photoparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.photoparticipant1 %>"> <br><br>
+
+                <h3>Paint 3D</h3>
+                <input name="paintparticipant1" id="paintparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.paintparticipant1 %>"> <br><br>
+
+                <h3>Scratch </h3>
+                <input name="gamedevparticipant1" id="gamedevparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.gamedevparticipant1 %>"> <br><br>
+                <input name="gamedevparticipant2" id="gamedevparticipant2" type="text" autocomplete="off"
+                    placeholder="Participant 2 Name" value="<%= team.gamedevparticipant2 %>"> <br><br>
+
+                <h3>AppD</h3>
+                <input name="minecraftparticipant1" id="minecraftparticipant1" type="text" autocomplete="off"
+                    placeholder="Participant 1 Name" value="<%= team.minecraftparticipant1 %>"> <br><br>
+                <input name="minecraftparticipant2" id="minecraftparticipant2" type="text" autocomplete="off"
+                    placeholder="Participant 2 Name" value="<%= team.minecraftparticipant2 %>"> <br><br>
+            </div>
         </div>
-        <br><br>
-        <form action="/admin/teamUpdate" method="POST">
-            <input type="text" placeholder="Creative Participant 1" name="creativeparticipant1">
-            <input type="text" placeholder="Creative Participant 2" name="creativeparticipant2">
-            <input type="text" placeholder="Creative Participant 3" name="creativeparticipant3">
-            <input type="text" placeholder="Creative Participant 4" name="creativeparticipant4">
-            <input type="text" placeholder="Creative Participant 5" name="creativeparticipant5">
-            <input type="text" placeholder="Creative Participant 6" name="creativeparticipant6">
-            <input type="text" placeholder="Cross Participant 1" name="crossparticipant1">
-            <input type="text" placeholder="Cross Participant 2" name="crossparticipant2">
-            <input type="text" placeholder="GD Participant 1" name="gdparticipant1">
-            <input type="text" placeholder="Surprise Participant 1" name="surpparticipant1">
-            <input type="text" placeholder="Surprise Participant 2" name="surpparticipant2">
-            <input type="text" placeholder="Programming Participant 1" name="progparticipant1">
-            <input type="text" placeholder="Programming Participant 2" name="progparticipant2">
-            <input type="text" placeholder="Film Making Participant 1" name="filmparticipant1">
-            <input type="text" placeholder="Film Making Participant 2" name="filmparticipant2">
-            <input type="text" placeholder="Film Making Participant 3" name="filmparticipant3">
-            <input type="text" placeholder="Film Making Participant 4" name="filmparticipant4">
-            <input type="text" placeholder="Gaming Participant 1" name="gamingparticipant1">
-            <input type="text" placeholder="Gaming Participant 2" name="gamingparticipant2">
-            <input type="text" placeholder="Quiz Participant 1" name="quizparticipant1">
-            <input type="text" placeholder="Robotics Participant 1" name="roboticsparticipant1">
-            <input type="text" placeholder="Robotics Participant 2" name="roboticsparticipant2">
-            <input type="text" placeholder="Robotics Participant 3" name="roboticsparticipant3">
-            <input type="text" placeholder="Photography Participant 1" name="photoparticipant1">
-            <input type="text" placeholder="Paint Participant 1" name="paintparticipant1">
-            <input type="text" placeholder="Game Development Participant 1" name="gamedevparticipant1">
-            <input type="text" placeholder="Game Development Participant 2" name="gamedevparticipant2">
-            <input type="text" placeholder="Minecraft Participant 1" name="minecraftparticipant1">
-            <input type="text" placeholder="Minecraft Participant 2" name="minecraftparticipant2">
-            <button type="submit">Submit</button>
-        </form>
-        <div class="container">
-            
-                <div class="card">
-                    <p class="data"><span class="sub-heading">School Name:</span> <%=user.school.schoolName  %></p>
-                    <p class="data"><span class="sub-heading">Creative Participant 1:</span> <%=teams.creativeparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Creative Participant 2:</span> <%=teams.creativeparticipant2  %></p>
-                    <p class="data"><span class="sub-heading">Creative Participant 3:</span> <%=teams.creativeparticipant3  %></p>
-                    <p class="data"><span class="sub-heading">Creative Participant 4:</span> <%=teams.creativeparticipant4  %></p>
-                    <p class="data"><span class="sub-heading">Creative Participant 5:</span> <%=teams.creativeparticipant5  %></p>
-                    <p class="data"><span class="sub-heading">Creative Participant 6:</span> <%=teams.creativeparticipant6  %></p>
-                    <p class="data"><span class="sub-heading">Cross Participant 1:</span> <%=teams.crossparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Cross Participant 2:</span> <%=teams.crossparticipant2  %></p>
-                    <p class="data"><span class="sub-heading">GD Participant 1:</span> <%=teams.gdparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Surprise Participant 1:</span> <%=teams.surpparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Surprise Participant 2:</span> <%=teams.surpparticipant2  %></p>
-                    <p class="data"><span class="sub-heading">Programming Participant 1:</span> <%=teams.progparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Programming Participant 2:</span> <%=teams.progparticipant2  %></p>
-                    <p class="data"><span class="sub-heading">Film Making Participant 1:</span> <%=teams.filmparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Film Making Participant 2:</span> <%=teams.filmparticipant2  %></p>
-                    <p class="data"><span class="sub-heading">Film Making Participant 3:</span> <%=teams.filmparticipant3  %></p>
-                    <p class="data"><span class="sub-heading">Film Making Participant 4:</span> <%=teams.filmparticipant4  %></p>
-                    <p class="data"><span class="sub-heading">Gaming Participant 1:</span> <%=teams.gamingparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Gaming Participant 2:</span> <%=teams.gamingparticipant2  %></p>
-                    <p class="data"><span class="sub-heading">Quiz Participant 1:</span> <%=teams.quizparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Robotics Participant 1:</span> <%=teams.roboticsparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Robotics Participant 2:</span> <%=teams.roboticsparticipant2  %></p>
-                    <p class="data"><span class="sub-heading">Robotics Participant 3:</span> <%=teams.roboticsparticipant3  %></p>
-                    <p class="data"><span class="sub-heading">Photography Participant 1:</span> <%=teams.photoparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Paint Participant 1:</span> <%=teams.paintparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Game Development Participant 1:</span> <%=teams.gamedevparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Game Development Participant 2:</span> <%=teams.gamedevparticipant2  %></p>
-                    <p class="data"><span class="sub-heading">Minecraft Participant 1:</span> <%=teams.minecraftparticipant1  %></p>
-                    <p class="data"><span class="sub-heading">Minecraft Participant 2:</span> <%=teams.minecraftparticipant2  %></p>
-                </div>
-               
-        </div>
-
-    </div>
-    <img class="illus" src="/illus.svg">
+    </form>
 </div>
-
-<script>
-    const back = () => {
-        window.location.href = '/dashboard'
-    }
-    var countDownDate = new Date("Nov 3, 2023 09:00:00").getTime();
-    var x = setInterval(function() {
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    document.getElementById("days").innerHTML = days;
-    document.getElementById("hrs").innerHTML = hours;
-    document.getElementById("mins").innerHTML = minutes;
-    document.getElementById("secs").innerHTML = seconds;
-    if (distance < 0) {
-        document.getElementById("days").innerHTML = "00";
-        document.getElementById("hrs").innerHTML = "00";
-        document.getElementById("mins").innerHTML = "00";
-        document.getElementById("secs").innerHTML = "00";
-    }
-}, 1000);
-</script>
-
 <style>
-    .countdown{
-        margin-left: -.5em;
-    }
-    .countdown li p {
-        margin-left: 1.5em !important;
-    }
-    .countdown li span{
-        margin-left: 2em !important;
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+    body {
+        background: black;
+        color: white;
+        font-family: 'Outfit', sans-serif;
     }
 
-    .countdown {
-        font-size: 10vw;
+    p {
+        font-size: 1.5rem;
     }
 
-    .countdown {
-        color: #eee;
-        font-size: 1vw;
-        font-weight: 500;
-        justify-content: space-between;
-        display: flex;
-        list-style-type: none;
-        padding: 1em;
-        width: 35vw;
-        margin-top: 2.5vw;
-    }
-
-    .countdown li {
-        text-align: center;
-        width: 25em;
-        margin-left: -3.5em;
-    }
-    
-    .countdown li p{
-        margin-left: 1.5em;
-    }
-
-    .landing {
-        display: flex;
-        margin-top: 5vw;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .illus {
-        width: 40vw;
-        margin-left: 5vw;
-    }
-
-    .landing-content h1 {
-        font-size: 5vw;
-        letter-spacing: 1px;
-        margin-top: 3.5vw;
-    }
-
-    .landing-content p {
-        font-size: 1.5vw;
-        color: rgba(255, 255, 255, 0.5);
-        margin-top: 2.5vw;
-    }
-
-    .buttons-div {
-        margin-top: 5vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .landing button {
-        cursor: pointer;
-        border: none;
-        border-radius: 10px;
-        background: #111;
-        color: #eee;
-        padding: 20px;
-        width: 15vw;
-        margin-right: 2.5vw;
-        font-size: 1.1vw;
-    }
-
-    .register-div {
+    .col-1,
+    .col-2 {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: center;
+        align-items: start;
+        height: auto;
     }
 
-    .register-div button {
-        margin-top: 1vw;
-        width: 33vw;
+    .col-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+    }
+
+    .teamForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .teamForm input {
+        width: 30vw;
+        height: 3vw;
+        border: none;
+        background-color: transparent;
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        font-size: 1.3vw;
+        font-weight: 500;
+        margin-top: .5vw;
+        border-radius: 5px;
+        margin-bottom: .5vw;
+        padding: 1.5vw;
+        transition: all 0.5s ease;
+        letter-spacing: 1px;
+    }
+
+    .teamForm input:focus {
+        outline: none;
+        border: 2px solid #16e16e;
+    }
+
+    .teamForm h2 {
+        font-size: 2vw;
+    }
+
+    #teamBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #16e16e;
+        color: #000;
+        border: none;
+        width: 16vw;
+        height: 3vw;
+        border-radius: 2vw;
+        font-size: 1.25vw;
+        font-family: 'Outfit', sans-serif;
+        margin-bottom: 2vw;
+        margin-top: 3vw;
+
+    }
+
+    #logoutbtn {
+        background-color: #16e16e;
+        color: #000;
+        border: none;
+        width: 16vw;
+        height: 3vw;
+        border-radius: 2vw;
+        font-size: 1.25vw;
+        font-family: 'Outfit', sans-serif;
+        margin-bottom: 2vw;
+    }
+
+    .team {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     @media screen and (max-width: 768px) {
-        .landing {
-            display: block;
+        p {
+            font-size: 1rem;
+            height: 1vh;
         }
 
-        .headline {
-            font-size: 10vw !important;
-            margin-left: 2.5vw;
+        .col-container {
+            flex-direction: column;
         }
 
-        .byline {
-            margin-left: 2.5vw;
-            font-size: 5vw !important;
-        }
-
-        .buttons-div {
-            display: grid;
-        }
-
-        .landing button {
+        .teamForm input {
             width: 80vw;
-            margin: 2.5vw;
-            font-size: 5vw;
+            height: 10vw;
+            font-size: 1.1rem;
         }
 
-        .illus {
-            display: none;
+        #logoutbtn,
+        #teamBtn {
+            width: 80vw;
+            height: 10vw;
+            font-size: 1.1rem;
+        }
+
+        .teamForm h4 {
+            font-size: 1.2rem;
         }
     }
-
-    
 </style>
+
+<script>
+    //disable all inputs on page
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.disabled = true;
+    });
+</script>

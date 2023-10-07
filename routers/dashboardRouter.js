@@ -9,7 +9,7 @@ router.get('/', ensureAuthenticated, async (req, res) => {
 
 router.get('/team', ensureAuthenticated, async (req, res) => {
     const teamDetails = await Team.findOne({ _id: req.user.teamSchemaID })
-    res.render('manageTeams', { user: req.user, teams: teamDetails })
+    res.render('manageTeams', { user: req.user, team: teamDetails })
 })
 
 router.post('/teamUpdate', async (req, res) => {
