@@ -14,30 +14,16 @@
                 <p class="data"><span class="sub-heading">School Name:</span> <%=schools[i].schoolName  %></p>
                 <p class="data"><span class="sub-heading">School Address:</span> <%=schools[i].schoolAddress  %></p>
                 <p class="data"><span class="sub-heading">School Email:</span> <%=schools[i].schoolEmail  %></p>
-<<<<<<< Updated upstream
-            </div>
-            <% } %>
-    </div>
-
-=======
-                <button onclick="checkIn()" style="display: flex; justify-content: center; align-items: center;">Check In</button>
-                <% if (!checkIn) { %>
-                    <button onclick="checkIn()" style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #ffffff; color: #000; ">Check In</button>
-                  <% } else if(checkIn) { %>
-                    <form action="/checkin" method="post">
-                        <button style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #000; color: #ffffff ; cursor: none; ">Checked In</button>
+                <% if (schools[i].checkedIn === false) { %>
+                    <form action="/admin/schoolData/checkin/<%= schools[i].schoolName %>" method="POST">
+                        <button type="submit" style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #ffffff; color: #000; border-radius: 10px;">Check In</button>
                     </form>
+                  <% } else if(schools[i].checkedIn === true) { %>
+                    <button style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #000; color: #ffffff ; cursor: none; ">Checked In</button>
                   <% } %>
             </div>
             <% } %>
     </div>
-    <script>
-        const checkIn = () => {
-        window.location.href = '/admin/checkin'
-    }
-    </script>
-    </script>
->>>>>>> Stashed changes
     <style>
         .sub-heading {
             font-weight: 600;

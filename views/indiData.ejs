@@ -11,24 +11,19 @@
 
         <% for (var i = 0; i < indi.length; i ++) { %>
             <div class="card">
-                <p class="data"><span class="sub-heading">Name:</span> <%=indi[i].firstName + ' ' + indi[i].lastName  %></p>
-                <p class="data"><span class="sub-heading">Phone No. :</span> <%=indi[i].phone  %></p>
-                <p class="data"><span class="sub-heading">Email:</span> <%=indi[i].email  %></p>
-                <% if (!checkIn) { %>
-                    <button onclick="checkIn()" style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #ffffff; color: #000; ">Check In</button>
-                  <% } else if(checkIn) { %>
-                    <form action="/checkin" method="post">
-                        <button style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #000; color: #ffffff ; cursor: none; ">Checked In</button>
+                <p class="data"><span class="sub-heading">Name :</span> <%=indi[i].firstName + ' ' + indi[i].lastName  %></p>
+                <p class="data"><span class="sub-heading">Phone No :</span> <%=indi[i].phone  %></p>
+                <p class="data"><span class="sub-heading">Email :</span> <%=indi[i].email  %></p>
+                <% if (indi[i].checkedIn === false) { %>
+                    <form action="/admin/indiData/checkin/<%= indi[i].phone %>" method="POST">
+                        <button type="submit" style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #ffffff; color: #000; border-radius: 10px;">Check In</button>
                     </form>
+                  <% } else if(indi[i].checkedIn === true) { %>
+                    <button style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #000; color: #ffffff ; cursor: none; ">Checked In</button>
                   <% } %>
             </div>
             <% } %>
     </div>
-    <script>
-        const checkIn = () => {
-        window.location.href = '/admin/checkin'
-    }
-    </script>
     <style>
         .sub-heading {
             font-weight: 600;
