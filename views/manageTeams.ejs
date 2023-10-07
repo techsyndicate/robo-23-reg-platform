@@ -1,14 +1,16 @@
 <div class="team">
     <h1 style="color: #16e16e; text-align: center">Edit Team</h1>
-    <div class="teamForm">
+    <form class="teamForm" method="post">
         <p name="schName" id="schName">School Name: <%= user.school.schoolName %>
         </p>
         <input name="schId" id="schId" type="hidden" value="<%= user.discordCode %>">
         <p name="schName" id="schName">Discord Code: <%= user.discordCode %>
         </p>
-        <form class="col-container" method="post" action="/dashboard.teamUpdate">
+        <div class="col-container" method="post" action="/dashboard/teamUpdate">
             <div class="col-1">
-
+                <script>
+                    console.log('<%= team %>')
+                </script>
                 <h4>Creative</h4>
                 <input name="creativeparticipant1" id="creativeparticipant1" type="text" autocomplete="off"
                     placeholder="Participant 1 Name" value="<%= team.creativeparticipant1 %>"> <br><br>
@@ -51,13 +53,11 @@
                     placeholder="Participant 3 Name" value="<%= team.roboticsparticipant3 %>"> <br><br>
 
             </div>
-
-
             <div class="col-2">
                 <h3>Junior Robotics</h3>
-                <input name="roboticsparticipant1" id="roboticsparticipant1" type="text" autocomplete="off"
+                <input name="jrroboticsparticipant1" id="roboticsparticipant1" type="text" autocomplete="off"
                     placeholder="Participant 1 Name" value="<%= team.roboticsparticipant1 %>"> <br><br>
-                <input name="roboticsparticipant2" id="roboticsparticipant2" type="text" autocomplete="off"
+                <input name="jrroboticsparticipant2" id="roboticsparticipant2" type="text" autocomplete="off"
                     placeholder="Participant 2 Name" value="<%= team.roboticsparticipant2 %>"> <br><br>
 
                 <h3>Gaming</h3>
@@ -97,7 +97,11 @@
                     placeholder="Participant 2 Name" value="<%= team.minecraftparticipant2 %>"> <br><br>
             </div>
         </div>
+        <div class="teambtn">
+            <button id="teamBtn">Modify Team</button>
+        </div>
     </form>
+</div>
 </div>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -227,11 +231,3 @@
         }
     }
 </style>
-
-<script>
-    //disable all inputs on page
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => {
-        input.disabled = true;
-    });
-</script>
