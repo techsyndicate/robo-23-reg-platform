@@ -12,10 +12,6 @@ router.get('/',async (req, res) => {
 });
 
 router.get('/schoolData', async (req, res) => {
-<<<<<<< Updated upstream
-    const schoolDetails = await User.find({});
-=======
-
     if(req.user.checkedIn){
         checkIn = true
     }
@@ -24,7 +20,6 @@ router.get('/schoolData', async (req, res) => {
     }
     schoolDetails = await User.find({});
     // console.log(schoolDetails)
->>>>>>> Stashed changes
     var schools = [];
     for (let i = 0; i < schoolDetails.length; i++) {
         if (schoolDetails[i].regType === "school") {
@@ -32,9 +27,6 @@ router.get('/schoolData', async (req, res) => {
         }
     }
     console.log(schools)
-<<<<<<< Updated upstream
-    res.render('schoolData', {  user: req.user, schools  })
-=======
     res.render('schoolData', {  user: req.user, schools, checkIn: checkIn  })
 })
 
@@ -63,7 +55,6 @@ router.get('/checkin', (req,res) => {
     req.user.checkedIn = true;
     req.user.save();
     res.redirect('/admin');
->>>>>>> Stashed changes
 })
 
 //export router
