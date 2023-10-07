@@ -4,6 +4,7 @@ const specReqString = { type: String, default: "" };
 
 const teamSchema = new Schema(
     {
+<<<<<<< Updated upstream
         creativeparticipant1: specReqString,
         creativeparticipant2: specReqString,
         creativeparticipant3: specReqString,
@@ -33,6 +34,39 @@ const teamSchema = new Schema(
         gamedevparticipant2: specReqString,
         minecraftparticipant1: specReqString,
         minecraftparticipant2: specReqString,
+=======
+        schId: nonReqString,
+        schName: nonReqString,
+        creativeparticipant1: nonReqString,
+        creativeparticipant2: nonReqString,
+        creativeparticipant3: nonReqString,
+        creativeparticipant4: nonReqString,
+        creativeparticipant5: nonReqString,
+        creativeparticipant6: nonReqString,
+        crossparticipant1: nonReqString,
+        crossparticipant2: nonReqString,
+        gdparticipant1: nonReqString,
+        surpparticipant1: nonReqString,
+        surpparticipant2: nonReqString,
+        progparticipant1: nonReqString,
+        progparticipant2: nonReqString,
+        filmparticipant1: nonReqString,
+        filmparticipant2: nonReqString,
+        filmparticipant3: nonReqString,
+        filmparticipant4: nonReqString,
+        gamingparticipant1: nonReqString,
+        gamingparticipant2: nonReqString,
+        quizparticipant1: nonReqString,
+        roboticsparticipant1: nonReqString,
+        roboticsparticipant2: nonReqString,
+        roboticsparticipant3: nonReqString,
+        photoparticipant1: nonReqString,
+        paintparticipant1: nonReqString,
+        gamedevparticipant1: nonReqString,
+        gamedevparticipant2: nonReqString,
+        minecraftparticipant1: nonReqString,
+        minecraftparticipant2: nonReqString,
+>>>>>>> Stashed changes
     },
     { timestamps: true }
 );
