@@ -20,6 +20,7 @@ const userSchema = new Schema(
             studentEmail: nonReqString,
             studentPhone: nonReqString,
             pass: nonReqString,
+            checkedIn: { type: Boolean, default: false },
         },
         indi: {
             firstName: nonReqString,
@@ -31,8 +32,8 @@ const userSchema = new Schema(
             dob: nonReqString,
             grade: nonReqString,
             schname: nonReqString,
+            checkedIn: { type: Boolean, default: false },
         },
-        checkedIn: { type: Boolean, default: false },
         discordCode: nonReqString,
         teamSchemaID: nonReqString,
         admin: { type: Boolean, default: false },
