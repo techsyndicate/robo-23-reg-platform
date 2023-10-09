@@ -67,26 +67,13 @@ app.use('/invite', inviteRouter)
 app.use('/admin', adminRouter)
 app.use('/dashboard', dashboardRouter)
 
-app.get('/404', (req, res) => {
-    res.render('404', { user: req.user })
-});
-
-app.post('/logout', (req, res) => {
-    req.logout((err) => {
-        if (err) {
-            
-        }
-    })
-    res.redirect("/")
-});
-
+app.use((err, req, res, next) => {
+    discoIt(err.stack.toString())
+    discoIt("App Has Crashed, Please Check The Logs, Trying To Restart On My Own!");
+    next()
+})
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`)
     discoIt("Server started on port " + PORT)
 });
-
-app.get('/logout', (req, res) => {
-    req.logout()
-    res.redirect('/')
-})
