@@ -21,6 +21,12 @@
                   <% } else if(schools[i].checkedIn === true) { %>
                     <button style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #000; color: #ffffff ; cursor: none; ">Checked In</button>
                   <% } %>
+                <form action="/admin/schoolData/<%= schools[i].schoolName %>" method="post">
+                    <button type="submit">
+                        Edit details
+                    </button>
+                </form>
+
             </div>
             <% } %>
     </div>

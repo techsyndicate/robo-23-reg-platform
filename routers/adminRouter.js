@@ -145,7 +145,7 @@ router.post('/schoolData/:id', async (req, res) => {
 
 router.post('/schoolData/:id/edit', async (req,res) => {
     var id = req.params.id
-    const { schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone } = req.body
+    const { schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone, checkedIn } = req.body
     // console.log(schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone )
     var reqUser;
     const allUsers = await User.find({regType: "school"})
@@ -157,7 +157,7 @@ router.post('/schoolData/:id/edit', async (req,res) => {
         }
     }
     // console.log(reqUser)
-    await User.updateOne(reqUser,
+    await User.updateOne({_id: reqUser._id},
     {
         $set: {school:{
             schoolName: schoolName,
@@ -172,9 +172,11 @@ router.post('/schoolData/:id/edit', async (req,res) => {
             studentName: studentName,
             studentEmail: studentEmail,
             studentPhone: studentPhone,
-            pass: reqUser.pass
+            pass: reqUser.pass,
+            checkedIn: checkedIn
         }}
     }).then(console.log("HO GAYA"))
+    console.log(await User.findOne({schoolName: schoolName}))
     res.redirect('/admin/schoolData')
 })
 
@@ -186,7 +188,8 @@ router.post('/indiData/:id/edit', async (req, res) => {
         dob,
         grade,
         phone,
-        schname
+        schname,
+        checkedIn
     } = req.body
     
     var reqUser;
@@ -210,8 +213,10 @@ router.post('/indiData/:id/edit', async (req, res) => {
             dob: dob,
             grade: grade,
             schname: schname,
-            pass: reqUser.pass
-        }}
+            pass: reqUser.pass,
+            checkedIn: checkedIn
+        }
+    }
     }).then(console.log("HO GAYA"))
     res.redirect('/admin/indiData')
 })
