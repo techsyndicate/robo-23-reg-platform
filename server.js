@@ -24,7 +24,10 @@ const landingRouter = require('./routers/landingRouter.js'),
     regRouter = require('./routers/regRouter.js'),
     inviteRouter = require('./routers/inviteRouter.js'),
     adminRouter = require('./routers/adminRouter.js'),
-    schoolData = require('./routers/schoolData.js');
+    schoolData = require('./routers/schoolData.js'),
+    { botInit, discoIt } = require('./utils/discordBot'),
+    userSchema = require('./schemas/userSchema.js'),
+    teamSchema = require('./schemas/teamSchema.js');
 
 const app = express(),
     PORT = process.env.PORT || 5000;
@@ -51,10 +54,7 @@ const dbUri = process.env.MONGO_URI
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log("Connected to mongodb"))
 
 //discord 
-// const {botInit} = require('./utils/discordBot')
-// botInit()
-
-
+botInit()
 //more passport
 app.use(passport.initialize())
 app.use(passport.session())
@@ -83,6 +83,7 @@ app.post('/logout', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`)
+    discoIt("Server started on port " + PORT)
 });
 
 app.get('/logout', (req, res) => {

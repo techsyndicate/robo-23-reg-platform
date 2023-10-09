@@ -19,7 +19,6 @@ router.get('/schoolData', async (req, res) => {
         checkIn = false
     }
     schoolDetails = await User.find({});
-    // console.log(schoolDetails)
     var schools = [];
     for (let i = 0; i < schoolDetails.length; i++) {
         if (schoolDetails[i].regType === "school") {
@@ -36,7 +35,6 @@ router.get('/schoolData', async (req, res) => {
 router.get('/indiData', async (req, res) => {
 
     indiDetails = await User.find({});
-    // console.log(schoolDetails)
     var indi = [];
     for (let i = 0; i < indiDetails.length; i++) {
         if (indiDetails[i].regType === "indi") {
@@ -58,7 +56,6 @@ router.post('/indiData/checkin/:id', async(req,res) => {
             reqUser = allUsers[i]
         }
     }
-    console.log(reqUser)
     await User.updateOne({_id: reqUser._id},
         {
             $set:{indi: {
@@ -73,7 +70,7 @@ router.post('/indiData/checkin/:id', async(req,res) => {
                 schname: reqUser.indi.schname ,
                 checkedIn: true,
             }}
-    }).then(console.log("DOOONE"))
+    })
     res.redirect('/admin/indiData')
 })
 router.post('/indiData/:id', async (req, res) => {

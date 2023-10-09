@@ -25,7 +25,6 @@ router.post('/school', async (req, res, next) => {
   if (password != cpassword) errors.push({ msg: "Passwords do not match" })
   await User.findOne({ "school.schoolEmail": schoolEmail }).then((user) => {
     if (user) {
-      console.log(user, "already exists")
       errors.push({ msg: "Account already exists, try logging in" })
     }
   })
@@ -60,10 +59,15 @@ router.post('/school', async (req, res, next) => {
     bcrypt.hash(newUser.school.pass, salt, async (err, hash) => {
       if (err) throw err;
       newUser.school.pass = hash;
+      newUser.school.schoolName = newUser.school.schoolName.replace(/[^a-zA-Z ]/g, "");
+      teamCreateHandle(newUser.school.schoolName)
       await newUser.save().then(async (user) => {
         console.log(user)
-        sendMail(email, "Registration for Robotronics 2023", "",await ejs.renderFile(__dirname + "/../views/inviteMail.ejs"))
-      }).catch(err => console.log(err))
+        discoIt(JSON.stringify(user))
+        sendMail(schoolEmail, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/reg-email.ejs", { userId : schoolEmail, pass: password, token: discordCode }))
+        sendMail(clubEmail, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/reg-email.ejs", { userId: schoolEmail, pass: password, token: discordCode }))
+        sendMail(teacherEmail, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/reg-email.ejs", { userId: schoolEmail, pass: password, token: discordCode }))
+      }).catch(err => discoIt(JSON.stringify(err)))
       await loginUser(req, res, next)
     })
   );
@@ -87,7 +91,6 @@ router.post('/indi', async (req, res, next) => {
   if (password != cpassword) errors.push({ msg: "Passwords do not match" })
   await User.findOne({ "indi.email": email }).then((user) => {
     if (user) {
-      console.log(user, "already exists")
       errors.push({ msg: "Account already exists, try logging in" })
     }
   })
@@ -116,8 +119,11 @@ router.post('/indi', async (req, res, next) => {
     bcrypt.hash(newUser.indi.pass, salt, async (err, hash) => {
       if (err) throw err;
       newUser.indi.pass = hash;
+      teamCreateHandle(newUser.indi.firstName)
+
       await newUser.save().then(async (user) => {
         console.log(user)
+        discoIt(JSON.stringify(user))
         sendMail(email, "Registration for Robotronics 2023", "",await ejs.renderFile(__dirname + "/../views/inviteMail.ejs"))
       }).catch(err => console.log(err))
       req.body.schoolEmail = email

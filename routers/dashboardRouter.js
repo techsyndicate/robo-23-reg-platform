@@ -9,12 +9,10 @@ router.get('/', ensureAuthenticated, async (req, res) => {
 
 router.get('/team', ensureAuthenticated, async (req, res) => {
     const teamDetails = await Team.findOne({ _id: req.user.teamSchemaID })
-    console.log(teamDetails)
     res.render('manageTeams', { user: req.user, team: await teamDetails })
 })
 
 router.post('/team', ensureAuthenticated, async (req, res) => {
-    console.log(req.body)
     await Team.updateOne({ _id: req.user.teamSchemaID },
         {
             $set: {
@@ -48,7 +46,7 @@ router.post('/team', ensureAuthenticated, async (req, res) => {
                 minecraftparticipant1: req.body.minecraftparticipant1,
                 minecraftparticipant2: req.body.minecraftparticipant2,
             }
-        }).then((doc)=> console.log(doc));
+        })
 
     res.redirect('/dashboard/team')
 })
