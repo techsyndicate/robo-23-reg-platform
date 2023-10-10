@@ -20,23 +20,24 @@ async function botInit() {
     if (message.channel.id == channel && message.content.startsWith("ts verify")) {
       const member = message.member
       let content = message.content.split(" ")[2]
-      team = await User.findOne({ discordCode: content })
+      const team = await User.findOne({ discordCode: content })
       if (team && team.regType == "school") {
         console.log("In school")
         let role = guild.roles.cache.find(r => r.name === team.school.schoolName)
         if (role) {
           member.roles.add([role, process.env.MEMBER_ROLE_ID]).then(
-            async () => await member.setNickname(`${message.author.globalName} | ${(team.school.schoolName != undefined ? team.school.schoolName : team.indi.firstName).toString()}`.slice(0, 31))
+            async () => await member.setNickname(`${member.displayName} | ${(team.school.schoolName != undefined ? team.school.schoolName : team.indi.firstName).toString()}`.slice(0, 31))
           )
           message.react('✅')
           member.send("Verified")
         }
       }
       else if (team && team.regType == "indi") {
+        console.log("In Indi")
         let role = guild.roles.cache.find(r => r.name === team.indi.firstName)
         if (role) {
           member.roles.add([role, process.env.MEMBER_ROLE_ID]).then(
-            async () => await member.setNickname(`${message.author.globalName} | ${team.school.schoolName}`)
+            async () => await member.setNickname(`${member.displayName} | ${team.indi.firstName}`)
           )
           message.react('✅')
           member.send("Verified")
