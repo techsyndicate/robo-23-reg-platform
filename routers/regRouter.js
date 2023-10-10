@@ -63,12 +63,14 @@ router.post('/school', async (req, res, next) => {
       teamCreateHandle(newUser.school.schoolName)
       await newUser.save().then(async (user) => {
         console.log(user)
-        // discoIt(JSON.stringify(user))
-        sendMail(schoolEmail, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/reg-email.ejs", { userId : schoolEmail, pass: password, token: discordCode }))
+        discoIt(JSON.stringify(user))
+        sendMail(schoolEmail, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/reg-email.ejs", { userId: schoolEmail, pass: password, token: discordCode }))
         sendMail(clubEmail, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/reg-email.ejs", { userId: schoolEmail, pass: password, token: discordCode }))
         sendMail(teacherEmail, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/reg-email.ejs", { userId: schoolEmail, pass: password, token: discordCode }))
-      }).catch(err => //discoIt(JSON.stringify(err))
-      console.log(err)
+      }).catch(err => {
+        discoIt(JSON.stringify(err))
+        console.log(err)
+      }
       )
       await loginUser(req, res, next)
     })
@@ -126,14 +128,14 @@ router.post('/indi', async (req, res, next) => {
       await newUser.save().then(async (user) => {
         console.log(user)
         discoIt(JSON.stringify(user))
-        sendMail(email, "Registration for Robotronics 2023", "",await ejs.renderFile(__dirname + "/../views/inviteMail.ejs"))
+        sendMail(email, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/inviteMail.ejs"))
       }).catch(err => console.log(err))
       req.body.schoolEmail = email
       await loginUser(req, res, next)
     })
   );
 
-  
+
 })
 
 router.get('/logout', (req, res) => {
