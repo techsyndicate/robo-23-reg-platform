@@ -128,7 +128,7 @@ router.post('/indi', async (req, res, next) => {
       await newUser.save().then(async (user) => {
         console.log(user)
         discoIt(JSON.stringify(user))
-        sendMail(email, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/inviteMail.ejs"))
+        sendMail(email, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/reg-email.ejs", { userId: email, pass: password, token: discordCode }))
       }).catch(err => console.log(err))
       req.body.schoolEmail = email
       await loginUser(req, res, next)
