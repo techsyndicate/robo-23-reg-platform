@@ -36,7 +36,7 @@ async function botInit() {
         let role = guild.roles.cache.find(r => r.name === team.indi.firstName)
         if (role) {
           member.roles.add([role, process.env.MEMBER_ROLE_ID]).then(
-            async () => await member.setNickname(`${message.author.globalName} | ${team.school.firstName}`)
+            async () => await member.setNickname(`${message.author.globalName} | ${team.indi.firstName}`)
           )
           message.react('✅')
           member.send("Verified")
