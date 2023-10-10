@@ -63,11 +63,13 @@ router.post('/school', async (req, res, next) => {
       teamCreateHandle(newUser.school.schoolName)
       await newUser.save().then(async (user) => {
         console.log(user)
-        discoIt(JSON.stringify(user))
+        // discoIt(JSON.stringify(user))
         sendMail(schoolEmail, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/reg-email.ejs", { userId : schoolEmail, pass: password, token: discordCode }))
         sendMail(clubEmail, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/reg-email.ejs", { userId: schoolEmail, pass: password, token: discordCode }))
         sendMail(teacherEmail, "Registration for Robotronics 2023", "", await ejs.renderFile(__dirname + "/../views/reg-email.ejs", { userId: schoolEmail, pass: password, token: discordCode }))
-      }).catch(err => discoIt(JSON.stringify(err)))
+      }).catch(err => //discoIt(JSON.stringify(err))
+      console.log(err)
+      )
       await loginUser(req, res, next)
     })
   );
