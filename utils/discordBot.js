@@ -14,44 +14,41 @@ async function botInit() {
 
 
   client.on('messageCreate', async (message) => {
-    try{
-    const guild = await client.guilds.fetch(process.env.GUILD_ID)
-    const channel = client.channels.cache.get(process.env.CHANNEL_ID);
-    if (message.channel.id == channel && message.content.startsWith("ts verify")) {
-      const member = message.member
-      let content = message.content.split(" ")[2]
-      team = await User.findOne({ discordCode: content })
-      if (team && team.regType == "school") {
-        console.log("In school")
-        let role = guild.roles.cache.find(r => r.name === team.school.schoolName)
-        if (role) {
-          member.roles.add([role, process.env.MEMBER_ROLE_ID]).then(
-            async () => await member.setNickname(`${message.author.globalName} | ${team.school.schoolName}}`.slice(0, 31))
-          )
-          message.react('✅')
-          member.send("Verified")
+    try {
+      const guild = await client.guilds.fetch(process.env.GUILD_ID)
+      const channel = client.channels.cache.get(process.env.CHANNEL_ID);
+      if (message.channel.id == channel && message.content.startsWith("ts verify")) {
+        const member = message.member
+        let content = message.content.split(" ")[2]
+        team = await User.findOne({ discordCode: content })
+        if (team && team.regType == "school") {
+          console.log("In school")
+          let role = guild.roles.cache.find(r => r.name === team.school.schoolName)
+          if (role) {
+            member.roles.add([role, process.env.MEMBER_ROLE_ID]).then(
+              async () => await member.setNickname(`${message.author.globalName} | ${team.school.schoolName}}`.slice(0, 31))
+            )
+            message.react('✅')
+            member.send("Verified")
+          }
         }
-      }
-      else if (team && team.regType == "indi") {
-        let role = guild.roles.cache.find(r => r.name === team.indi.firstName)
-        if (role) {
-          member.roles.add([role, process.env.MEMBER_ROLE_ID]).then(
+        else if (team && team.regType == "indi") {
+          member.roles.add([process.env.INDI_ROLE_ID, process.env.MEMBER_ROLE_ID]).then(
             async () => await member.setNickname(`${message.author.globalName} | ${team.indi.firstName}`)
           )
           message.react('✅')
           member.send("Verified")
         }
+        else {
+          message.react('❌')
+          member.send("The verification code does not match! Please send the code as ```ts verify <code>```")
+        }
+        setTimeout(() => message.delete(), 1000)
       }
-      else {
-        message.react('❌')
-        member.send("The verification code does not match!")
-      }
-      setTimeout(() => message.delete(), 1000)
-    }
-  } catch (err) {
-    console.log(err)
+    } catch (err) {
+      console.log(err)
 
-  }
+    }
   })
 
 }
