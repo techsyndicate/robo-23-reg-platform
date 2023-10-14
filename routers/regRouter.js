@@ -123,8 +123,6 @@ router.post('/indi', async (req, res, next) => {
     bcrypt.hash(newUser.indi.pass, salt, async (err, hash) => {
       if (err) throw err;
       newUser.indi.pass = hash;
-      teamCreateHandle(newUser.indi.firstName)
-
       await newUser.save().then(async (user) => {
         console.log(user)
         discoIt(JSON.stringify(user))
