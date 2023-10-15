@@ -39,6 +39,8 @@ router.post('/team', ensureAuthenticated, async (req, res) => {
                 roboticsparticipant1: req.body.roboticsparticipant1,
                 roboticsparticipant2: req.body.roboticsparticipant2,
                 roboticsparticipant3: req.body.roboticsparticipant3,
+                jrroboticsparticipant1: req.body.jrroboticsparticipant1,
+                jrroboticsparticipant2: req.body.jrroboticsparticipant2,
                 photoparticipant1: req.body.photoparticipant1,
                 paintparticipant1: req.body.paintparticipant1,
                 gamedevparticipant1: req.body.gamedevparticipant1,
