@@ -26,6 +26,8 @@ const teamSchema = new Schema(
         quizparticipant1: specReqString,
         roboticsparticipant1: specReqString,
         roboticsparticipant2: specReqString,
+        jrroboticsparticipant1: specReqString,
+        jrroboticsparticipant2: specReqString,
         roboticsparticipant3: specReqString,
         photoparticipant1: specReqString,
         paintparticipant1: specReqString,
