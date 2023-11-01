@@ -1,16 +1,13 @@
 <div class="team">
     <h1 style="color: #16e16e; text-align: center">Edit Team</h1>
-    <form class="teamForm" method="post">
+    <div class="teamForm">
         <p name="schName" id="schName">School Name: <%= user.school.schoolName %>
         </p>
         <input name="schId" id="schId" type="hidden" value="<%= user.discordCode %>">
         <p name="schName" id="schName">Discord Code: <%= user.discordCode %>
         </p>
-        <div class="col-container" method="post" action="/dashboard/teamUpdate">
+        <div class="col-container">
             <div class="col-1">
-                <script>
-                    console.log('<%= team %>')
-                </script>
                 <h4>Creative</h4>
                 <input name="creativeparticipant1" id="creativeparticipant1" type="text" autocomplete="off"
                     placeholder="Participant 1 Name" value="<%= team.creativeparticipant1 %>"> <br><br>
@@ -97,10 +94,7 @@
                     placeholder="Participant 2 Name" value="<%= team.minecraftparticipant2 %>"> <br><br>
             </div>
         </div>
-        <div class="teambtn">
-            <button id="teamBtn">Modify Team</button>
-        </div>
-    </form>
+    </div>
 </div>
 </div>
 <style>

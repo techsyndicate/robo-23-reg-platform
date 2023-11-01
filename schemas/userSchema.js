@@ -6,6 +6,7 @@ const nonReqString = { type: String, required: false };
 const userSchema = new Schema(
     {
         regType: reqString, //school, indi
+        code: nonReqString,
         school: {
             schoolName: nonReqString,
             schoolAddress: nonReqString,

@@ -3,12 +3,7 @@
         <h1 class="headline">Robotronics '23</h1>
         <p class="byline">Registration platform for Robotronics '23.</p>
         <div class="buttons-div">
-            <button onclick="invite()">Request Invite</button>
             <button onclick="team()">Login</button>
-        </div>
-        <div class="register-div">
-            <button onclick="register('school')">Register School</button>
-            <button onclick="register('indi')">Register Independently</button> 
         </div>
         <br><br>
     </div>
@@ -16,12 +11,6 @@
 </div>
 
 <script>
-    const invite = () => {
-        window.location.href = '/invite'
-    }
-    const register = (x) => {
-        window.location.href = '/register/'+x+'/'
-    }
     const team = () => {
         window.location.href = '/login'
     }
