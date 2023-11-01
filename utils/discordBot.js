@@ -16,4 +16,4 @@ function discoIt(message) {
 //add logic for finding team name etc 
 
 
-module.exports = { botInit, teamCreateHandle, discoIt }
+module.exports = { discoIt }
