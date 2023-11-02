@@ -236,6 +236,46 @@ router.get("/csv", async (req, res) => {
     res.status(200).send(csv);
 });
 
+router.get("/csvIndi", async (req, res) => {
+    const schools = await User.find({ regType: "indi" });
+    const teams = await teamSchema.find();
+    let data = [];
+    for (let i = 0; i < schools.length; i++) {
+        let school = schools[i]._doc;
+        let team = teams.find((team) => team._id == school.teamSchemaID);
+        school = JSON.parse(JSON.stringify(school));
+        delete school._id;
+        delete school.__v;
+        if (team) {
+            team = team._doc;
+            team = JSON.parse(JSON.stringify(team));
+            delete team.schId;
+            delete team._id;
+            delete team.__v;
+            delete team.createdAt;
+            delete school.createdAt;
+            delete team.updatedAt;
+            delete school.updatedAt;
+            delete school.school.pass;
+            data.push({
+                discord: school.discordCode,
+                code: school.code,
+                ...school.indi,
+                ...team,
+            });
+        } else {
+            data.push({ ...school });
+        }
+    }
+    console.log(data);
+    const csv = json2csv.parse(data);
+    res.setHeader("Content-Type", "text/csv");
+    res.setHeader(
+        "Content-Disposition",
+        'attachment; filename="robotronics.csv"'
+    );
+    res.status(200).send(csv);
+});
 
 
 

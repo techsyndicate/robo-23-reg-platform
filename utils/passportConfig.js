@@ -12,7 +12,10 @@ module.exports = function passportInit(passport) {
                 if (!user) {
                     return done(null, false, { message: 'That email is not registered' });
                 }
-                
+                console.log(user.school.pass || user.indi.pass)
+                if (user.school.pass || user.indi.pass === undefined) {
+                    return done(null, user);
+                }
                 bcrypt.compare(password, user.school.pass || user.indi.pass, (err, isMatch) => {
                     if (err) throw err;
                     if (isMatch) {

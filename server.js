@@ -18,6 +18,7 @@ const loginRouter = require('./routers/loginRouter.js'),
     { discoIt } = require('./utils/discordBot'),
     userSchema = require('./schemas/userSchema.js'),
     teamSchema = require('./schemas/teamSchema.js');
+const { User } = require('discord.js');
 
 const app = express(),
     PORT = process.env.PORT || 5000;
@@ -76,6 +77,9 @@ app.get('/logout', (req, res) => {
 //     discoIt("App Has Crashed, Please Check The Logs, Trying To Restart On My Own!");
 //     next()
 // })
+app.get('/test', async(req, res) => {
+    res.send(await userSchema.find({regType:"school"}))
+})
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`)
