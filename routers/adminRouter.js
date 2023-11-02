@@ -18,10 +18,13 @@ router.get('/schoolData', async (req, res) => {
 })
 
 router.get('/indiData', async (req, res) => {
-
     indiDetails = await User.find({ regType: "indi" });
-    res.render('indiData', { user: req.user, indi })
+    indiDetails = await Promise.all(indiDetails.map((user) => {
+        return user.indi
+    }))
+    res.render('indiData', { user: req.user, indi: indiDetails })
 })
+
 router.post('/indiData/checkin/:id', async (req, res) => {
 
     var id = req.params.id
@@ -54,20 +57,17 @@ router.post('/indiData/checkin/:id', async (req, res) => {
         })
     res.redirect('/admin/indiData')
 })
-router.post('/indiData/:id', async (req, res) => {
+
+router.get('/indiData/:id', async (req, res) => {
     var id = req.params.id
     console.log(id) // sadads
-    const allUsers = await User.find({ regType: "indi" })
-    var toSend;
-    for (let i = 0; i < allUsers.length; i++) {
-        if (allUsers[i].indi.firstName === id) {
-            toSend = allUsers[i].indi
-        }
-    }
-    // console.log(toSend)
-    // console.log(requiredUser)
-    res.render('checkInIndi', { user: toSend })
+    const toSend = await User.findOne({ regType: "indi", "indi.firstName": id})
+    const Team = await teamSchema.findOne({ _id: toSend.teamSchemaID })
+    console.log(toSend, Team)
+
+    res.render('checkInIndi', { user: toSend.indi, team: Team })
 })
+
 router.post('/schoolData/checkin/:id', async (req, res) => {
 
     var id = req.params.id
