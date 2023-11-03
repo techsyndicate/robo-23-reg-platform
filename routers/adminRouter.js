@@ -29,15 +29,8 @@ router.post('/indiData/checkin/:id', async (req, res) => {
 
     var id = req.params.id
 
-    const allUsers = await User.find({ regType: "indi" })
+    const reqUser = await User.findOne({ regType: "indi", pass: id })
 
-    var reqUser
-
-    for (let i = 0; i < allUsers.length; i++) {
-        if (allUsers[i].indi.phone === id) {
-            reqUser = allUsers[i]
-        }
-    }
     await User.updateOne({ _id: reqUser._id },
         {
             $set: {
@@ -61,7 +54,7 @@ router.post('/indiData/checkin/:id', async (req, res) => {
 router.get('/indiData/:id', async (req, res) => {
     var id = req.params.id
     console.log(id) // sadads
-    const toSend = await User.findOne({ regType: "indi", "indi.firstName": id})
+    const toSend = await User.findOne({ regType: "indi", "indi.pass": id})
     const Team = await teamSchema.findOne({ _id: toSend.teamSchemaID })
     console.log(toSend, Team)
 
@@ -72,15 +65,8 @@ router.post('/schoolData/checkin/:id', async (req, res) => {
 
     var id = req.params.id
 
-    const allUsers = await User.find({ regType: "school" })
-
-    var needUser
-
-    for (let i = 0; i < allUsers.length; i++) {
-        if (allUsers[i].school.schoolName === id) {
-            needUser = allUsers[i]
-        }
-    }
+    const needUser = await User.findOne({ regType: "school", "school.pass": id })
+    console.log(id, needUser)
 
     await User.updateOne({ _id: needUser._id },
         {
@@ -109,7 +95,8 @@ router.post('/schoolData/checkin/:id', async (req, res) => {
 
 router.get('/schoolData/:id', async (req, res) => {
     var id = req.params.id
-    const School = await User.findOne({ regType: "school", "school.schoolName": id })
+    const School = await User.findOne({ regType: "school", "school.pass": id })
+    console.log(id, School)
     const Team = await teamSchema.findOne({ _id: School.teamSchemaID })
     res.render('checkInSchool', { user: School.school, team: Team })
 })
@@ -118,15 +105,7 @@ router.post('/schoolData/:id/edit', async (req, res) => {
     var id = req.params.id
     const { schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone, checkedIn } = req.body
     // console.log(schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone )
-    var reqUser;
-    const allUsers = await User.find({ regType: "school" })
-    // console.log(allUsers)
-    for (var i = 0; i < allUsers.length; i++) {
-        // console.log(allUsers[i])
-        if (allUsers[i].school.schoolName === id) {
-            reqUser = allUsers[i]
-        }
-    }
+    const reqUser = await User.findOne({ regType: "school", pass: id })
     // console.log(reqUser)
     await User.updateOne({ _id: reqUser._id },
         {
@@ -149,7 +128,6 @@ router.post('/schoolData/:id/edit', async (req, res) => {
                 }
             }
         }).then(console.log("HO GAYA"))
-    console.log(await User.findOne({ schoolName: schoolName }))
     res.redirect('/admin/schoolData')
 })
 
@@ -276,8 +254,6 @@ router.get("/csvIndi", async (req, res) => {
     );
     res.status(200).send(csv);
 });
-
-
 
 //export router
 module.exports = router;

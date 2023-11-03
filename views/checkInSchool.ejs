@@ -1,6 +1,6 @@
 <h1 style="text-align: center; margin-bottom: 5vw; color: #16e16e; font-size: 3rem;">Edit School</h1>
 
-<form action="/admin/schoolData/<%= user.schoolName %>/edit" method="post">
+<form action="/admin/schoolData/<%= user.pass %>/edit" method="post">
     <% for (const [key, value] of Object.entries(user)) { %>
         <% if (key === "pass") {continue} %>
         <div class="teamForm">
