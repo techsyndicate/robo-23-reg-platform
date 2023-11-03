@@ -11,6 +11,8 @@ router.get('/', async (req, res) => {
 router.get('/schoolData', async (req, res) => {
     let schoolDetails = await User.find({ regType: "school" });
     schoolDetails = await Promise.all(schoolDetails.map((user) => {
+        var user = JSON.parse(JSON.stringify(user))
+        user.school._id = user._id
         return user.school
     }))
     console.log(schoolDetails)
@@ -20,6 +22,8 @@ router.get('/schoolData', async (req, res) => {
 router.get('/indiData', async (req, res) => {
     indiDetails = await User.find({ regType: "indi" });
     indiDetails = await Promise.all(indiDetails.map((user) => {
+        var user = JSON.parse(JSON.stringify(user))
+        user.indi._id = user._id
         return user.indi
     }))
     res.render('indiData', { user: req.user, indi: indiDetails })
@@ -29,7 +33,7 @@ router.post('/indiData/checkin/:id', async (req, res) => {
 
     var id = req.params.id
 
-    const reqUser = await User.findOne({ regType: "indi", pass: id })
+    const reqUser = await User.findOne({ regType: "indi", _id: id })
 
     await User.updateOne({ _id: reqUser._id },
         {
@@ -54,7 +58,7 @@ router.post('/indiData/checkin/:id', async (req, res) => {
 router.get('/indiData/:id', async (req, res) => {
     var id = req.params.id
     console.log(id) // sadads
-    const toSend = await User.findOne({ regType: "indi", "indi.pass": id})
+    const toSend = await User.findOne({ regType: "indi", _id: id})
     const Team = await teamSchema.findOne({ _id: toSend.teamSchemaID })
     console.log(toSend, Team)
 
@@ -65,7 +69,7 @@ router.post('/schoolData/checkin/:id', async (req, res) => {
 
     var id = req.params.id
 
-    const needUser = await User.findOne({ regType: "school", "school.pass": id })
+    const needUser = await User.findOne({ regType: "school", _id: id })
     console.log(id, needUser)
 
     await User.updateOne({ _id: needUser._id },
@@ -95,7 +99,7 @@ router.post('/schoolData/checkin/:id', async (req, res) => {
 
 router.get('/schoolData/:id', async (req, res) => {
     var id = req.params.id
-    const School = await User.findOne({ regType: "school", "school.pass": id })
+    const School = await User.findOne({ regType: "school", _id: id })
     console.log(id, School)
     const Team = await teamSchema.findOne({ _id: School.teamSchemaID })
     res.render('checkInSchool', { user: School.school, team: Team })
@@ -105,7 +109,7 @@ router.post('/schoolData/:id/edit', async (req, res) => {
     var id = req.params.id
     const { schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone, checkedIn } = req.body
     // console.log(schoolName, schoolAddress, schoolEmail, clubName, clubEmail, clubWebsite, teacherName, teacherEmail, teacherPhone, studentName, studentEmail, studentPhone )
-    const reqUser = await User.findOne({ regType: "school", pass: id })
+    const reqUser = await User.findOne({ regType: "school", _id: id })
     // console.log(reqUser)
     await User.updateOne({ _id: reqUser._id },
         {

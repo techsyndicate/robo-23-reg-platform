@@ -15,13 +15,13 @@
                 <p class="data"><span class="sub-heading">School Address:</span> <%=schools[i].schoolAddress  %></p>
                 <p class="data"><span class="sub-heading">School Email:</span> <%=schools[i].schoolEmail  %></p>
                 <% if (schools[i].checkedIn === false) { %>
-                    <form action="/admin/schoolData/checkin/<%= schools[i].pass %>" method="post">
+                    <form action="/admin/schoolData/checkin/<%= schools[i]._id %>" method="post">
                         <button type="submit" style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #ffffff; color: #000; border-radius: 10px;">Check In</button>
                     </form>
                   <% } else if(schools[i].checkedIn === true) { %>
                     <button style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #000; color: #ffffff ; cursor: none; ">Checked In</button>
                   <% } %>
-                <form action="/admin/schoolData/<%= schools[i].pass %>" method="get">
+                <form action="/admin/schoolData/<%= schools[i]._id %>" method="get">
                     <button type="submit">
                         Edit details
                     </button>

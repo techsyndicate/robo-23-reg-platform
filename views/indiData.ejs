@@ -15,13 +15,13 @@
                 <p class="data"><span class="sub-heading">Phone No :</span> <%=indi[i].phone  %></p>
                 <p class="data"><span class="sub-heading">Email :</span> <%=indi[i].email  %></p>
                 <% if (indi[i].checkedIn === false) { %>
-                    <form action="/admin/indiData/checkin/<%= indi[i].pass %>" method="post">
+                    <form action="/admin/indiData/checkin/<%= indi[i]._id %>" method="post">
                         <button type="submit" style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #ffffff; color: #000; border-radius: 10px;">Check In</button>
                     </form>
                     <% } else if(indi[i].checkedIn === true) { %>
                         <button style="display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #000; color: #ffffff ; cursor: none; ">Checked In</button>
                         <% } %>
-                    <form action="/admin/indiData/<%= indi[i].pass %>" method="get">
+                    <form action="/admin/indiData/<%= indi[i]._id %>" method="get">
                         <button type="submit">Edit details</button>
                     </form>
             </div>
